@@ -15,3 +15,6 @@
 
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
+
+#Blender backup files. Really should be .+\.blend[0-9]+
+*.blend[0-9]
