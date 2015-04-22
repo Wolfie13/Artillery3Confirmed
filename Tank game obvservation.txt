@@ -1,0 +1,8 @@
+Observation of pocket tanks:
+A movements button showing number of moves and 2 directional buttons to move in their respective directions,
+A big button to fire the weapon labled FIRE,
+A angles button which displays the angle and 2 buttons to increase and decrease the angle, Their is a button above the angle which allows the user to change the angle to where the mouse is on the screen,
+A weapons display to show what weapon is currently displayed and arrow buttons to cycle through them, clicking the display shows a list of all available weapons
+A power diplay to show the current power applied to the weapon, Arrow keys increase and decrease the power, clicking the meter allows the power to be changed by mouse
+Players select their weapons at the start from a randomly generated list and take turns to pick their weapons
+Their is only 2 players and to win one player needs to obtain a larger score than the other, to get points the players damage eachother with the selected weapons and the game ends when both players have run out of weapons.
