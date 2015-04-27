@@ -17,23 +17,26 @@ public class MainGUIScript : MonoBehaviour
 	int relativeStartHeight;
 	int startButtonHeight;
 
+	int relativeButtonWidth;
+
 	void OnGUI ()
 	{
 		relativeStartWidth = Screen.width / 2 - menuWidth / 2;
 		relativeStartHeight = Screen.height / 2 - menuHeight / 2;
+		relativeButtonWidth = Screen.width / 2 - buttonWidth / 2;
 		startButtonHeight = relativeStartHeight + buttonHeightOffset;
 
 		// main box
 		GUI.Box ( new Rect ( relativeStartWidth, relativeStartHeight, menuWidth, menuHeight ), "Main Menu" );
 
 		// button for "New Game"
-		if ( GUI.Button ( new Rect ( relativeStartWidth, startButtonHeight, buttonWidth, buttonHeight ), "New Game" ))
+		if ( GUI.Button ( new Rect ( relativeButtonWidth, startButtonHeight, buttonWidth, buttonHeight ), "New Game" ))
 		{
-
+			Application.LoadLevel ( "Dummy" );
 		}
 
 		// button for "Load Game"
-		if ( GUI.Button ( new Rect ( relativeStartWidth, startButtonHeight + (buttonHeightOffset), buttonWidth, buttonHeight ), "Load Game" ))
+		if ( GUI.Button ( new Rect ( relativeButtonWidth, startButtonHeight + (buttonHeightOffset), buttonWidth, buttonHeight ), "Load Game" ))
 		{
 			// purposefully empty
 		}
