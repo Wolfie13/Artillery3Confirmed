@@ -7,13 +7,16 @@ public class TurnOrderList : MonoBehaviour
 	int menuWidth = 120; 
 	int textHeight = 25;
 	int textHorizontalOffset = 10;
-
+	
 	int textLength;
 	int menuHeight;
 
 	// needs to be passed in
 	int currentPlayer = 0;
 	string[] playerList;
+
+	// public (since it is easier)
+	public GUISkin selectedPlayerSkin;
 
 	// TODO: Make current player red
 
@@ -37,7 +40,17 @@ public class TurnOrderList : MonoBehaviour
 		for (int i = 0; i < playerList.Length; i++)
 		{
 			GUIContent text = new GUIContent (playerList[i]);
-			GUI.Label (new Rect(textHorizontalOffset, textStartPosition, textLength, textHeight), text);
+			if (i != currentPlayer)
+			{
+				GUI.Label (new Rect(textHorizontalOffset, textStartPosition, textLength, textHeight), text);
+			}
+			else
+			{
+				GUISkin normal = GUI.skin;
+				GUI.skin = selectedPlayerSkin;
+				GUI.Label (new Rect(textHorizontalOffset, textStartPosition, textLength, textHeight), text);
+				GUI.skin = normal;
+			}
 
 			textStartPosition += (int)GUI.skin.label.CalcHeight (text, textLength) + 5;
 		}

@@ -8,6 +8,9 @@ public class TurnController : MonoBehaviour
 	// TODO: Add list of players to be displayed
 	//       Test movement
 
+	// camera details
+	public Camera mainCamera;
+
 	// public variables
 	public int turnTime = 20;
 	public Transform turnMarker;
@@ -39,6 +42,9 @@ public class TurnController : MonoBehaviour
 		}
 		orderGUI.PassPlayers (playerNames);
 
+		CameraControls cControls = mainCamera.GetComponent (typeof (CameraControls)) as CameraControls;
+		cControls.PassPlayers (players);
+
 		currentTurnTime = turnTime;
 		timer.text = ((int)(Mathf.Round(turnTime))).ToString();
 	}
@@ -64,6 +70,14 @@ public class TurnController : MonoBehaviour
 				currentPlayer = 0;
 			}
 
+			TurnOrderList orderGUI = gameObject.GetComponent (typeof (TurnOrderList)) as TurnOrderList;
+			orderGUI.PlayerChanged (currentPlayer);
+
+			InputController input = gameObject.GetComponent (typeof (InputController)) as InputController;
+			input.PassCurrentPlayer (currentPlayer);
+
+			CameraControls controls = mainCamera.GetComponent (typeof (CameraControls)) as CameraControls;
+			controls.PlayerChanged (currentPlayer);
 			currentTurnTime = turnTime;
 		}
 

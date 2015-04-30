@@ -208,8 +208,8 @@ GameObject:
   - 114: {fileID: 388571869}
   - 114: {fileID: 388571870}
   m_Layer: 0
-  m_Name: StartController
-  m_TagString: Untagged
+  m_Name: StateController
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802cbad82f332514e8d8181f47779dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 2043292728}
   turnTime: 5
   turnMarker: {fileID: 97472247}
   timer: {fileID: 1347781464}
@@ -262,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96eecc722313c4f4f8354dd185676491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedPlayerSkin: {fileID: 11400000, guid: 25cf45f1f603ad949b32905917f0f734, type: 2}
 --- !u!1 &470965456
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +766,7 @@ GameObject:
   - 92: {fileID: 2043292727}
   - 124: {fileID: 2043292726}
   - 81: {fileID: 2043292725}
+  - 114: {fileID: 2043292730}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -836,3 +839,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &2043292730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2043292724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74120bda8fda8cd409e3259386178f02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngle: 90

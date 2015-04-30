@@ -1,8 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum Input
+{
+	CUp,
+	CLeft,
+	CRight,
+	CDown,
+	Up,
+	Left,
+	Right,
+	Down,
+	Fire,
+	Pause,
+	CameraSwitch
+}
+
 public class InputController : MonoBehaviour
 {
+	public Camera mainCamera;
+
 	int currentPlayer;
 	GameObject[] playerList;
 
@@ -19,6 +36,7 @@ public class InputController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	
+		// check the buttons
+		
 	}
 }
