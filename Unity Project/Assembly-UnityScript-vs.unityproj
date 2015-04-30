@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Copy #2 of Health.js" />
      <Compile Include="Assets\Scripts\Copy #3 of PowerBar.js" />
+     <Compile Include="Assets\Scripts\shooting(rigidbody).js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
