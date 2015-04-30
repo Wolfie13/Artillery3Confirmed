@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUIScripts\MainGUIScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\shooting(rigidbody).js">
     <Files>
-      <File FileName="Assets\Scripts\GUIScripts\MainGUIScript.cs" Line="27" Column="103" />
+      <File FileName="Assets\Scripts\shooting(rigidbody).js" Line="22" Column="1" />
+      <File FileName="Assets\Scripts\GUIScripts\MainGUIScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
