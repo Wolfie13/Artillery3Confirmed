@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (InputController))]
+[RequireComponent (typeof (TurnOrderList))]
 public class TurnController : MonoBehaviour
 {
 	// TODO: Add list of players to be displayed
-	//       Add animation
 	//       Test movement
-	// 		 Make 3D triangle
 
 	// public variables
 	public int turnTime = 20;
@@ -27,6 +27,17 @@ public class TurnController : MonoBehaviour
 		                                              players [currentPlayer].transform.position.y - 1F, 
 		                                              players [currentPlayer].transform.position.z );
 		numberPlayers = players.Length;
+
+		InputController input = gameObject.GetComponent (typeof (InputController)) as InputController;
+		input.PassPlayerList (players);
+
+		TurnOrderList orderGUI = gameObject.GetComponent (typeof (TurnOrderList)) as TurnOrderList;
+		string[] playerNames = new string[players.Length];
+		for (int i = 0; i < players.Length; i++) 
+		{
+			playerNames[i] = players[i].name;
+		}
+		orderGUI.PassPlayers (playerNames);
 
 		currentTurnTime = turnTime;
 		timer.text = ((int)(Mathf.Round(turnTime))).ToString();
