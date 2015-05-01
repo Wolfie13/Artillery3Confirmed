@@ -15,12 +15,12 @@ public class TerrainMeshGenerator : MonoBehaviour {
 	void Update () {
 	}
 
-	private const int HORIZONTAL_RES = 128;
-	private const int VERTICAL_RES = 128;
+	private const int HORIZONTAL_RES = 800;
+	private const int VERTICAL_RES = 600;
 
-	private Vector3[] start = {new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(-0.5f, -0.5f, -0.5f)};
+	private Vector3[] start = {new Vector3(0.0f, 0.5f, 0.5f), new Vector3(0.0f, 0.5f, -0.5f), new Vector3(0.0f, -0.5f, 0.5f), new Vector3(0.0f, -0.5f, -0.5f)};
 
-	private Vector3[] end = {new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0.5f, 0.5f, -0.5f), new Vector3(0.5f, -0.5f, 0.5f), new Vector3(0.5f, -0.5f, -0.5f)};
+	private Vector3[] end = {new Vector3(0.0f, 0.5f, 0.5f), new Vector3(0.0f, 0.5f, -0.5f), new Vector3(0.0f, -0.5f, 0.5f), new Vector3(0.0f, -0.5f, -0.5f)};
 
 	private static void AddWithOffset (List<Vector3> list, Vector3[] items, Vector3 offset)
 	{
@@ -50,22 +50,78 @@ public class TerrainMeshGenerator : MonoBehaviour {
 		int stb = lastPoint - 6;
 		int stf = lastPoint - 7;
 
-		//Front plane
-		tris.Add (sbf);
+		//*//Front plane
 		tris.Add (ebf);
 		tris.Add (etf);
-		tris.Add (etf);
+		tris.Add (stf);
+
 		tris.Add (stf);
 		tris.Add (sbf);
+		tris.Add (ebf);//*/
 
-		//Top Plane
+		//*Top Plane
+		tris.Add (stf);
+		tris.Add (etf);
+		tris.Add (etb);
+
+		tris.Add (etb);
+		tris.Add (stb);
+		tris.Add (stf);
+		//*/
+
+		//*Bottom Plane
+		tris.Add (ebb);
+		tris.Add (ebf);
+		tris.Add (sbf);
+
+		tris.Add (sbf);
+		tris.Add (sbb);
+		tris.Add (ebb);
+		//*/
+
+		//*Start End Plane
+		tris.Add (sbb);
+		tris.Add (sbf);
+		tris.Add (stf);
+
 		tris.Add (stf);
 		tris.Add (stb);
-		tris.Add (etb);
+		tris.Add (sbb);
+		//*/
+
+		//*End End Plane
+		tris.Add (etf);
+		tris.Add (ebf);
+		tris.Add (ebb);
+		
+		tris.Add (ebb);
 		tris.Add (etb);
 		tris.Add (etf);
-		tris.Add (stf);
+		//*/
 
+	}
+
+	private static Vector2 GetUVForCoord(int x, int y)
+	{
+		return new Vector2((1f / HORIZONTAL_RES) * x, (1f / VERTICAL_RES) * y);
+	}
+
+	void OnDrawGizmosSelectedOff()
+	{
+		for (int y = 0; y != VERTICAL_RES; y++) {
+			//Set up the state machine used for the mesh generator.
+			for (int x = 0; x != HORIZONTAL_RES; x++) {
+				Vector3 basePos = new Vector3(x, y, 0);
+				Vector2 uv = GetUVForCoord(x, y);
+				Color c = terrainMap.GetPixelBilinear(uv.x, uv.y);
+				if (c.a > 0.1f)
+				{
+					Gizmos.color = new Color(uv.x, uv.y, 0);
+					Gizmos.DrawCube(basePos, new Vector3(0.2f, 0.2f, 0.2f));
+				}
+
+			}
+		}
 	}
 
 	private enum GeneratorState {RUNNING, CLEAR};
@@ -84,7 +140,7 @@ public class TerrainMeshGenerator : MonoBehaviour {
 			for (int x = 0; x != HORIZONTAL_RES; x++) {
 				Vector3 basePos = new Vector3(x, y, 0);
 
-				Vector2 uv = new Vector2((1 / HORIZONTAL_RES) * x, (1 / VERTICAL_RES) * y);
+				Vector2 uv = GetUVForCoord(x, y);
 				Color c = terrainMap.GetPixelBilinear(uv.x, uv.y);
 
 				if (genState == GeneratorState.RUNNING) {
@@ -92,7 +148,7 @@ public class TerrainMeshGenerator : MonoBehaviour {
 						//Transition to the CLEAR state, build the end of this strip.
 						AddWithOffset(verts, end, basePos);
 						AddUVs(uvs, uv);
-						AddTriangles(triangles, verts.Count);
+						AddTriangles(triangles, verts.Count - 1);
 						genState = GeneratorState.CLEAR;
 					} else {
 						//Do nothing.
@@ -109,23 +165,23 @@ public class TerrainMeshGenerator : MonoBehaviour {
 						AddUVs(uvs, uv);
 						genState = GeneratorState.RUNNING;
 					}
-
 				}
-			}
-			if (genState == GeneratorState.RUNNING) {
-				Vector3 basePos = new Vector3(y, HORIZONTAL_RES, 0);
-				Vector2 uv = new Vector2(1, (1 / VERTICAL_RES) * y);
 
-				AddWithOffset(verts, end, basePos);
-				AddUVs(uvs, uv);
-				AddTriangles(triangles, verts.Count);
+			}
+
+			if (genState == GeneratorState.RUNNING) {
+				//Transition to the CLEAR state, build the end of this strip.
+				AddWithOffset(verts, end, new Vector3(HORIZONTAL_RES, y, 0));
+				AddUVs(uvs, GetUVForCoord(HORIZONTAL_RES, y));
+				AddTriangles(triangles, verts.Count - 1);
 				genState = GeneratorState.CLEAR;
 			}
-
 		}
 
 		mesh.vertices = verts.ToArray ();
 		mesh.triangles = triangles.ToArray ();
 		mesh.uv = uvs.ToArray ();
+		mesh.RecalculateBounds ();
+		mesh.RecalculateNormals ();
 	}
 }
