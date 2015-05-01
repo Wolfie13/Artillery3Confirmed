@@ -3,10 +3,16 @@ using System.Collections;
 
 public class EntityScript : MonoBehaviour
 {
+	// TODO: Add stamina/fuel
+
 	// health variables
 	public int maxHealth;
 	int currentHealth = 0;
 	TextMesh healthNumbers;
+
+	// stamina variables
+	public int maxStamina;
+	int currentStamina = 0;
 
 	public GameObject tankCannon;
 	TankGunRotation gunRotation;
@@ -53,6 +59,7 @@ public class EntityScript : MonoBehaviour
 		                                                transform.position.y + 4,
 		                                                transform.position.z);
 		currentHealth = maxHealth;
+		currentStamina = maxStamina;
 	}
 	
 	// Update is called once per frame

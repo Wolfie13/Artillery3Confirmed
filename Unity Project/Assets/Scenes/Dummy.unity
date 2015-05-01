@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  tankCannon: {fileID: 1111064224}
 --- !u!95 &421477935
 Animator:
   serializedVersion: 3
@@ -363,14 +364,14 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 6534c650a9d1f3f448db070a487c9cb9, type: 3}
   m_PrefabInternal: {fileID: 1292701524}
   m_GameObject: {fileID: 421477933}
-  m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
   m_LocalPosition: {x: -25.2129097, y: 1.0293591, z: 0}
   m_LocalScale: {x: .75, y: .750000119, z: .750000119}
   m_Children:
   - {fileID: 1111064225}
   - {fileID: 1735109303}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &432051993
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +410,6 @@ GameObject:
   - 33: {fileID: 514532571}
   - 23: {fileID: 514532570}
   - 114: {fileID: 514532573}
-  - 114: {fileID: 514532574}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -472,19 +472,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAngle: 0
   speedRotation: 0
---- !u!114 &514532574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 514532569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d516c7e31ee2149894e4e7d5da768f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  speed: 20
 --- !u!1001 &541880548
 Prefab:
   m_ObjectHideFlags: 0
@@ -553,57 +540,6 @@ Prefab:
   m_RootGameObject: {fileID: 1268166723}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &662669881
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 662669883}
-  - 132: {fileID: 662669882}
-  m_Layer: 0
-  m_Name: TimerText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!132 &662669882
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 662669881}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: Gui Text
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
---- !u!4 &662669883
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 662669881}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
 --- !u!1 &777629989
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +739,6 @@ GameObject:
   - 33: {fileID: 1111064229}
   - 23: {fileID: 1111064228}
   - 114: {fileID: 1111064227}
-  - 114: {fileID: 1111064226}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -824,19 +759,6 @@ Transform:
   - {fileID: 304164181}
   m_Father: {fileID: 421477938}
   m_RootOrder: 0
---- !u!114 &1111064226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1111064224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d516c7e31ee2149894e4e7d5da768f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  speed: 20
 --- !u!114 &1111064227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,8 +770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031d1b98858994d4e8d23becf60a4416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAngle: 0
-  speedRotation: 0
+  maxAngle: 90
+  speedRotation: 5
 --- !u!23 &1111064228
 Renderer:
   m_ObjectHideFlags: 0
@@ -1053,6 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  tankCannon: {fileID: 514532569}
 --- !u!1001 &1292701524
 Prefab:
   m_ObjectHideFlags: 0
@@ -1074,7 +997,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6534c650a9d1f3f448db070a487c9cb9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -.707106888
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6534c650a9d1f3f448db070a487c9cb9, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1082,11 +1005,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6534c650a9d1f3f448db070a487c9cb9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6534c650a9d1f3f448db070a487c9cb9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: .707106769
+      value: -.707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6534c650a9d1f3f448db070a487c9cb9, type: 3}
       propertyPath: m_RootMapOrder
@@ -1129,7 +1052,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1450417787}
-  - 114: {fileID: 1450417786}
   - 114: {fileID: 1450417785}
   - 114: {fileID: 1450417784}
   m_Layer: 0
@@ -1151,9 +1073,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 777629993}
+  inputController: {fileID: 1681032716}
   turnTime: 20
   turnMarker: {fileID: 30869322}
-  timer: {fileID: 662669882}
+  timer: {fileID: 0}
 --- !u!114 &1450417785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1166,18 +1089,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedPlayerSkin: {fileID: 11400000, guid: 25cf45f1f603ad949b32905917f0f734, type: 2}
---- !u!114 &1450417786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1450417783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a174cdd22ca9e47419e302a8b1d94ab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 777629993}
 --- !u!4 &1450417787
 Transform:
   m_ObjectHideFlags: 0
@@ -1260,6 +1171,47 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!1 &1681032716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1681032718}
+  - 114: {fileID: 1681032717}
+  m_Layer: 0
+  m_Name: InputController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1681032717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681032716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a174cdd22ca9e47419e302a8b1d94ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 777629993}
+  turnController: {fileID: 1450417783}
+--- !u!4 &1681032718
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681032716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.62649488, y: 5.23179674, z: 3.48877716}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &1735109302
 GameObject:
   m_ObjectHideFlags: 0

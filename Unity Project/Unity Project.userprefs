@@ -2,11 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EntityScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\InputControlScripts\InputController.cs" Line="25" Column="27" />
-      <File FileName="Assets\Scripts\InputControlScripts\CameraControls.cs" Line="23" Column="34" />
-      <File FileName="Assets\Scripts\TurnController.cs" Line="9" Column="36" />
-      <File FileName="Assets\Scripts\ShootingScripts\TankGunRotation.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EntityScript.cs" Line="38" Column="3" />
+      <File FileName="Assets\Scripts\InputControlScripts\InputController.cs" Line="81" Column="52" />
+      <File FileName="Assets\Scripts\InputControlScripts\CameraControls.cs" Line="10" Column="20" />
+      <File FileName="Assets\Scripts\TurnController.cs" Line="18" Column="23" />
+      <File FileName="Assets\Scripts\ShootingScripts\TankGunRotation.cs" Line="5" Column="2" />
+      <File FileName="Assets\Scripts\EntityScript.cs" Line="6" Column="27" />
+      <File FileName="Assets\Scripts\ShootingScripts\CollisionScript.cs" Line="4" Column="29" />
+      <File FileName="Assets\Scripts\GUIScripts\MainGUIScript.cs" Line="51" Column="24" />
+      <File FileName="Assets\Scripts\ShootingScripts\BasicShooting.cs" Line="19" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

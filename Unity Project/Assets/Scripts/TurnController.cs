@@ -23,6 +23,10 @@ public class TurnController : MonoBehaviour
 	int currentPlayer = 0;
 	GameObject[] players;
 
+	// GUI variables
+	int relativeScreenWidth;
+	int timerBoxSize = 25;
+
 	public void PassInput (InputCode inputCode)
 	{
 		EntityScript entity = players[currentPlayer].GetComponent (typeof (EntityScript)) as EntityScript;
@@ -54,7 +58,6 @@ public class TurnController : MonoBehaviour
 		cControls.PlayerChanged (0);
 
 		currentTurnTime = turnTime;
-		timer.text = ((int)(Mathf.Round(turnTime))).ToString();
 	}
 	
 	// Update is called once per frame
@@ -103,8 +106,12 @@ public class TurnController : MonoBehaviour
 		}
 
 		UpdateMarker ();
-		timer.text = ((int)(Mathf.Round(currentTurnTime))).ToString();
+	}
 
+	void OnGUI ()
+	{
+		relativeScreenWidth = Screen.width / 2 - timerBoxSize / 2;
+		GUI.Box (new Rect (relativeScreenWidth, 5, timerBoxSize, timerBoxSize), ((int)(Mathf.Round(currentTurnTime))).ToString());
 	}
 
 	void UpdateMarker ()

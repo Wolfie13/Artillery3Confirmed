@@ -3,8 +3,6 @@ using System.Collections;
 
 public class TankGunRotation : MonoBehaviour
 {
-	//TODO: Fix
-
 	public float maxAngle;
 	public float speedRotation = 2;
 	float angle = 45;
