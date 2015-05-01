@@ -8,13 +8,23 @@ public class EntityScript : MonoBehaviour
 	int currentHealth = 0;
 	TextMesh healthNumbers;
 
-	GameObject tankCannon;
+	public GameObject tankCannon;
+	TankGunRotation gunRotation;
 
 	bool dead = false;
 
 	public void PassInput (InputCode inputCode)
 	{
 		// pass input for firing and all
+		if (inputCode == InputCode.Up)
+		{
+			gunRotation.Rotate (1);
+		}
+
+		else if (inputCode == InputCode.Down)
+		{
+			gunRotation.Rotate (-1);
+		}
 	}
 
 	public bool IsDead ()
@@ -36,8 +46,7 @@ public class EntityScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Transform childTrans = gameObject.GetComponentInChildren (typeof (Transform)) as Transform;
-		tankCannon = childTrans.gameObject;
+		gunRotation = tankCannon.GetComponent (typeof (TankGunRotation)) as TankGunRotation;
 
 		healthNumbers = gameObject.GetComponentInChildren (typeof (TextMesh)) as TextMesh;
 		healthNumbers.transform.position = new Vector3 (transform.position.x,

@@ -53,7 +53,7 @@
      <Compile Include="Assets\Scripts\InputControlScripts\InputController.cs" />
      <Compile Include="Assets\Scripts\MarkerAnimation.cs" />
      <Compile Include="Assets\Scripts\ShootingScripts\BasicShooting.cs" />
-     <Compile Include="Assets\Scripts\ShootingScripts\Collision.cs" />
+     <Compile Include="Assets\Scripts\ShootingScripts\CollisionScript.cs" />
      <Compile Include="Assets\Scripts\ShootingScripts\TankGunRotation.cs" />
      <Compile Include="Assets\Scripts\TurnController.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />

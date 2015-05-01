@@ -7,6 +7,8 @@ public class CameraControls : MonoBehaviour
 	float angleVertical;
 	float angleHorizontal;
 
+	int lookSpeed = 4;
+
 	bool coupled = false;
 	bool started = false;
 
@@ -38,7 +40,7 @@ public class CameraControls : MonoBehaviour
 	{
 		if (inputCode == InputCode.CUp && Mathf.Abs (angleVertical) <= maxAngle) 
 		{
-			transform.Translate (Vector3.up * Time.deltaTime);
+			transform.Translate (Vector3.up * Time.deltaTime * lookSpeed);
 			angleVertical += Time.deltaTime;
 
 			if (angleVertical > maxAngle) { angleVertical = maxAngle; }
@@ -46,7 +48,7 @@ public class CameraControls : MonoBehaviour
 
 		else if (inputCode == InputCode.CDown && Mathf.Abs (angleVertical) <= maxAngle)
 		{
-			transform.Translate (Vector3.down * Time.deltaTime);
+			transform.Translate (Vector3.down * Time.deltaTime * lookSpeed);
 			angleVertical -= Time.deltaTime;
 
 			if (angleVertical < -maxAngle ) { angleVertical = -maxAngle; }
@@ -54,7 +56,7 @@ public class CameraControls : MonoBehaviour
 
 		if (inputCode == InputCode.CLeft && Mathf.Abs (angleHorizontal) <= maxAngle)
 		{
-			transform.Translate (Vector3.right * Time.deltaTime);
+			transform.Translate (Vector3.right * Time.deltaTime * lookSpeed);
 			angleHorizontal += Time.deltaTime;
 
 			if (angleHorizontal > maxAngle) { angleHorizontal = maxAngle; }
@@ -62,7 +64,7 @@ public class CameraControls : MonoBehaviour
 
 		else if (inputCode == InputCode.CRight && Mathf.Abs (angleHorizontal) <= maxAngle)
 		{
-			transform.Translate (Vector3.left * Time.deltaTime);
+			transform.Translate (Vector3.left * Time.deltaTime * lookSpeed);
 			angleHorizontal -= Time.deltaTime;
 
 			if (angleHorizontal < -maxAngle) { angleHorizontal = -maxAngle; }

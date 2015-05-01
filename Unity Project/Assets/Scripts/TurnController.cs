@@ -10,6 +10,7 @@ public class TurnController : MonoBehaviour
 
 	// camera details
 	public Camera mainCamera;
+	public GameObject inputController;
 
 	// public variables
 	public int turnTime = 20;
@@ -22,6 +23,12 @@ public class TurnController : MonoBehaviour
 	int currentPlayer = 0;
 	GameObject[] players;
 
+	public void PassInput (InputCode inputCode)
+	{
+		EntityScript entity = players[currentPlayer].GetComponent (typeof (EntityScript)) as EntityScript;
+		entity.PassInput (inputCode);
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -31,7 +38,7 @@ public class TurnController : MonoBehaviour
 		                                              players [currentPlayer].transform.position.z );
 		numberPlayers = players.Length;
 
-		InputController input = gameObject.GetComponent (typeof (InputController)) as InputController;
+		InputController input = inputController.GetComponent (typeof (InputController)) as InputController;
 		input.PassPlayerList (players);
 
 		TurnOrderList orderGUI = gameObject.GetComponent (typeof (TurnOrderList)) as TurnOrderList;
@@ -112,7 +119,7 @@ public class TurnController : MonoBehaviour
 		TurnOrderList orderGUI = gameObject.GetComponent (typeof (TurnOrderList)) as TurnOrderList;
 		orderGUI.PlayerChanged (currentPlayer);
 		
-		InputController input = gameObject.GetComponent (typeof (InputController)) as InputController;
+		InputController input = inputController.GetComponent (typeof (InputController)) as InputController;
 		input.PassCurrentPlayer (currentPlayer);
 		
 		CameraControls controls = mainCamera.GetComponent (typeof (CameraControls)) as CameraControls;

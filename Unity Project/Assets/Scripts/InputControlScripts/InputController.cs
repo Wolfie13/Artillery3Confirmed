@@ -19,10 +19,12 @@ public enum InputCode
 public class InputController : MonoBehaviour
 {
 	public Camera mainCamera;
+	public GameObject turnController;
 
 	int currentPlayer;
 	GameObject[] playerList;
 	CameraControls cControls;
+	TurnController turnControllerScript;
 
 	public void PassPlayerList (GameObject[] players)
 	{
@@ -37,6 +39,7 @@ public class InputController : MonoBehaviour
 	void Start ()
 	{
 		cControls = mainCamera.GetComponent (typeof (CameraControls)) as CameraControls;
+		turnControllerScript = turnController.GetComponent (typeof (TurnController)) as TurnController;
 	}
 
 	// Update is called once per frame
@@ -68,6 +71,14 @@ public class InputController : MonoBehaviour
 			cControls.PassInput (InputCode.CameraSwitch);
 		}
 
+		if (Input.GetKey ("w"))
+		{
+			turnControllerScript.PassInput (InputCode.Up);
+		}
 
+		if (Input.GetKey ("s"))
+		{
+			turnControllerScript.PassInput (InputCode.Down);
+		}
 	}
 }

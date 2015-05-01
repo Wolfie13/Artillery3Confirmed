@@ -40,5 +40,15 @@ public class MainGUIScript : MonoBehaviour
 		{
 			// purposefully empty
 		}
+
+		if ( GUI.Button ( new Rect ( relativeButtonWidth, startButtonHeight + (buttonHeightOffset * 2), buttonWidth, buttonHeight ), "Multiplayer Game" ))
+		{
+			// purposefully empty
+		}
+
+		if ( GUI.Button ( new Rect ( relativeButtonWidth, startButtonHeight + (buttonHeightOffset), buttonWidth, buttonHeight ), "Quit Game" ))
+		{
+			Application.Quit ();
+		}
 	}
 }

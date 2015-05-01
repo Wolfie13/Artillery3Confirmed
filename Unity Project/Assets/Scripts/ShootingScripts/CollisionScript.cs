@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Collision : MonoBehaviour
+public class CollisionScript : MonoBehaviour
 {
 	public int damageOnHit = 15;
 	float destroyTime = 15F;
