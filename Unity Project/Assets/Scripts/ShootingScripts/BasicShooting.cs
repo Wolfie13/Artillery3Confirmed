@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class basicshooting : MonoBehaviour {
-
+public class BasicShooting : MonoBehaviour
+{
 	public Rigidbody projectile;
 	public float speed = 20;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 	
 	}
 	

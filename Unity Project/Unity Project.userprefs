@@ -1,9 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\shooting(rigidbody).js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EntityScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\shooting(rigidbody).js" Line="22" Column="1" />
-      <File FileName="Assets\Scripts\GUIScripts\MainGUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\InputControlScripts\InputController.cs" Line="25" Column="27" />
+      <File FileName="Assets\Scripts\InputControlScripts\CameraControls.cs" Line="23" Column="34" />
+      <File FileName="Assets\Scripts\TurnController.cs" Line="9" Column="36" />
+      <File FileName="Assets\Scripts\ShootingScripts\TankGunRotation.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EntityScript.cs" Line="18" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
