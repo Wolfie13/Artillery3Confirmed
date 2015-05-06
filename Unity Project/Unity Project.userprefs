@@ -1,14 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Terrain\TerrainMeshGenerator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EntityScript.cs">
     <Files>
-      <File FileName="Assets\Terrain\TerrainMeshGenerator.cs" Line="105" Column="1" />
+      <File FileName="Assets\Scripts\InputControlScripts\InputController.cs" Line="81" Column="52" />
+      <File FileName="Assets\Scripts\InputControlScripts\CameraControls.cs" Line="10" Column="20" />
+      <File FileName="Assets\Scripts\TurnController.cs" Line="18" Column="23" />
+      <File FileName="Assets\Scripts\ShootingScripts\TankGunRotation.cs" Line="5" Column="2" />
+      <File FileName="Assets\Scripts\EntityScript.cs" Line="6" Column="27" />
+      <File FileName="Assets\Scripts\ShootingScripts\CollisionScript.cs" Line="4" Column="29" />
+      <File FileName="Assets\Scripts\GUIScripts\MainGUIScript.cs" Line="51" Column="24" />
+      <File FileName="Assets\Scripts\ShootingScripts\BasicShooting.cs" Line="19" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="U:\Artillery3Confirmed\Unity Project\Assets\Terrain\TerrainMeshGenerator.cs" line="88" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

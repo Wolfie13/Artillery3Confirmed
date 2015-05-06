@@ -46,7 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Terrain\TerrainMeshGenerator.cs" />
+     <Compile Include="Assets\Scripts\EntityScript.cs" />
+     <Compile Include="Assets\Scripts\GUIScripts\MainGUIScript.cs" />
+     <Compile Include="Assets\Scripts\GUIScripts\TurnOrderList.cs" />
+     <Compile Include="Assets\Scripts\InputControlScripts\CameraControls.cs" />
+     <Compile Include="Assets\Scripts\InputControlScripts\InputController.cs" />
+     <Compile Include="Assets\Scripts\MarkerAnimation.cs" />
+     <Compile Include="Assets\Scripts\ShootingScripts\BasicShooting.cs" />
+     <Compile Include="Assets\Scripts\ShootingScripts\CollisionScript.cs" />
+     <Compile Include="Assets\Scripts\ShootingScripts\TankGunRotation.cs" />
+     <Compile Include="Assets\Scripts\TurnController.cs" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
