@@ -15,8 +15,8 @@ public class TerrainMeshGenerator : MonoBehaviour {
 	void Update () {
 	}
 
-	private const int HORIZONTAL_RES = 800;
-	private const int VERTICAL_RES = 600;
+	private const int HORIZONTAL_RES = Terrain.HORIZONTAL_RES;
+	private const int VERTICAL_RES = Terrain.VERTICAL_RES;
 
 	private Vector3[] start = {new Vector3(0.0f, 0.5f, 0.5f), new Vector3(0.0f, 0.5f, -0.5f), new Vector3(0.0f, -0.5f, 0.5f), new Vector3(0.0f, -0.5f, -0.5f)};
 
@@ -106,26 +106,8 @@ public class TerrainMeshGenerator : MonoBehaviour {
 		return new Vector2((1f / HORIZONTAL_RES) * x, (1f / VERTICAL_RES) * y);
 	}
 
-	void OnDrawGizmosSelectedOff()
-	{
-		for (int y = 0; y != VERTICAL_RES; y++) {
-			//Set up the state machine used for the mesh generator.
-			for (int x = 0; x != HORIZONTAL_RES; x++) {
-				Vector3 basePos = new Vector3(x, y, 0);
-				Vector2 uv = GetUVForCoord(x, y);
-				Color c = terrainMap.GetPixelBilinear(uv.x, uv.y);
-				if (c.a > 0.1f)
-				{
-					Gizmos.color = new Color(uv.x, uv.y, 0);
-					Gizmos.DrawCube(basePos, new Vector3(0.2f, 0.2f, 0.2f));
-				}
-
-			}
-		}
-	}
-
 	private enum GeneratorState {RUNNING, CLEAR};
-	void UpdateMesh()
+	public void UpdateMesh()
 	{
 		Mesh mesh = new Mesh ();
 		this.terrainMesh.mesh = mesh;
@@ -183,5 +165,23 @@ public class TerrainMeshGenerator : MonoBehaviour {
 		mesh.uv = uvs.ToArray ();
 		mesh.RecalculateBounds ();
 		mesh.RecalculateNormals ();
+	}
+
+	void OnDrawGizmosSelectedOff()
+	{
+		for (int y = 0; y != VERTICAL_RES; y++) {
+			//Set up the state machine used for the mesh generator.
+			for (int x = 0; x != HORIZONTAL_RES; x++) {
+				Vector3 basePos = new Vector3(x, y, 0);
+				Vector2 uv = GetUVForCoord(x, y);
+				Color c = terrainMap.GetPixelBilinear(uv.x, uv.y);
+				if (c.a > 0.1f)
+				{
+					Gizmos.color = new Color(uv.x, uv.y, 0);
+					Gizmos.DrawCube(basePos, new Vector3(0.2f, 0.2f, 0.2f));
+				}
+				
+			}
+		}
 	}
 }
