@@ -80,5 +80,15 @@ public class InputController : MonoBehaviour
 		{
 			turnControllerScript.PassInput (InputCode.Down);
 		}
+
+		if (Input.GetKey ("a"))
+		{
+			turnControllerScript.PassInput (InputCode.Left);
+		}
+
+		if (Input.GetKey ("d"))
+		{
+			turnControllerScript.PassInput (InputCode.Right);
+		}
 	}
 }

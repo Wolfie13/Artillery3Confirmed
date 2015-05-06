@@ -11,13 +11,16 @@ public class EntityScript : MonoBehaviour
 	TextMesh healthNumbers;
 
 	// stamina variables
-	public int maxStamina;
-	int currentStamina = 0;
+	public Texture2D fuelTexture;
+	public int maxFuel;
+	float currentFuel = 1.0F;
 
 	public GameObject tankCannon;
 	TankGunRotation gunRotation;
 
-	bool dead = false;
+	// active?
+	bool isActive = false;
+	bool isDead = false;
 
 	public void PassInput (InputCode inputCode)
 	{
@@ -35,7 +38,7 @@ public class EntityScript : MonoBehaviour
 
 	public bool IsDead ()
 	{
-		return dead;
+		return isDead;
 	}
 
 	public void AdjustCurrentHealth (int adj)
@@ -43,10 +46,20 @@ public class EntityScript : MonoBehaviour
 		currentHealth += adj;
 		
 		if (currentHealth < 0) {currentHealth = 0;}
-		if (currentHealth == 0) {dead = true;}
+		if (currentHealth == 0) {isDead = true;}
 
 		if (currentHealth > maxHealth) {currentHealth = maxHealth;}
 		if (maxHealth < 1) {maxHealth = 1;}
+	}
+
+	public void ActiveSwitch ()
+	{
+		isActive = !isActive;
+
+		if (isActive)
+		{
+			currentFuel = 1.0F;
+		}
 	}
 
 	// Use this for initialization
@@ -59,16 +72,32 @@ public class EntityScript : MonoBehaviour
 		                                                transform.position.y + 4,
 		                                                transform.position.z);
 		currentHealth = maxHealth;
-		currentStamina = maxStamina;
+		currentFuel = maxFuel;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (!dead)
+		if (!isDead)
 		{
 			AdjustCurrentHealth (0);
 			healthNumbers.text = currentHealth.ToString ();
+		}
+	}
+
+	void OnGUI ()
+	{
+		if (isActive)
+		{
+			GUILayout.BeginArea (new Rect (5, Screen.height - 25, maxFuel, 20));
+
+				GUILayout.BeginArea (new Rect (0, 0, currentFuel * maxFuel, 20));
+
+				GUI.Box (new Rect (0, 0, maxFuel, 20), fuelTexture);
+
+				GUILayout.EndArea ();
+
+			GUILayout.EndArea ();
 		}
 	}
 }

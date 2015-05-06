@@ -8,6 +8,8 @@ public class TurnController : MonoBehaviour
 	// TODO: Check if players are dead
 	//       Check if above is working
 
+	// Add team turn system
+
 	// camera details
 	public Camera mainCamera;
 	public GameObject inputController;
@@ -57,6 +59,8 @@ public class TurnController : MonoBehaviour
 		cControls.PassPlayers (players);
 		cControls.PlayerChanged (0);
 
+		EntityScript script = players[currentPlayer].GetComponent (typeof (EntityScript)) as EntityScript;
+		script.ActiveSwitch ();
 		currentTurnTime = turnTime;
 	}
 	
@@ -92,6 +96,9 @@ public class TurnController : MonoBehaviour
 		{
 			// check if this is the last player
 			// for now it doesn't have any fancy stuff happening between turns
+			EntityScript script = players[currentPlayer].GetComponent (typeof (EntityScript)) as EntityScript;
+			script.ActiveSwitch ();
+
 			if (currentPlayer < numberPlayers - 1)
 			{
 				currentPlayer++;
@@ -101,6 +108,8 @@ public class TurnController : MonoBehaviour
 				currentPlayer = 0;
 			}
 
+			script = players[currentPlayer].GetComponent (typeof (EntityScript)) as EntityScript;
+			script.ActiveSwitch ();
 			PassPlayer ();
 			currentTurnTime = turnTime;
 		}
