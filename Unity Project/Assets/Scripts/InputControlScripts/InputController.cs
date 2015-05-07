@@ -90,5 +90,10 @@ public class InputController : MonoBehaviour
 		{
 			turnControllerScript.PassInput (InputCode.Right);
 		}
+
+		if (Input.GetKeyUp ("space"))
+		{
+			turnControllerScript.PassInput (InputCode.Fire);
+		}
 	}
 }

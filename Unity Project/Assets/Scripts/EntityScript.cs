@@ -16,7 +16,9 @@ public class EntityScript : MonoBehaviour
 	float currentFuel = 1.0F;
 
 	public GameObject tankCannon;
+	public GameObject firingPoint;
 	TankGunRotation gunRotation;
+	Shooting gunShooting;
 
 	// active?
 	bool isActive = false;
@@ -33,6 +35,12 @@ public class EntityScript : MonoBehaviour
 		else if (inputCode == InputCode.Down)
 		{
 			gunRotation.Rotate (-1);
+		}
+
+		if (inputCode == InputCode.Fire)
+		{
+			gunShooting.Shoot (0);
+			//turnControllerScript.EndTurn ();
 		}
 	}
 
@@ -66,6 +74,7 @@ public class EntityScript : MonoBehaviour
 	void Start ()
 	{
 		gunRotation = tankCannon.GetComponent (typeof (TankGunRotation)) as TankGunRotation;
+		gunShooting = firingPoint.GetComponent (typeof (Shooting)) as Shooting;
 
 		healthNumbers = gameObject.GetComponentInChildren (typeof (TextMesh)) as TextMesh;
 		healthNumbers.transform.position = new Vector3 (transform.position.x,

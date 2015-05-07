@@ -101,6 +101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a727bea27488bb4b9dc845df1cf93ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapList:
+  - Worm Ground
+  - Under The Sea
+  - World of Tomorrow
+  - Training Room
+  - Training Room 2
+  - The Battlefield
+  - Training Room
 --- !u!4 &820658841
 Transform:
   m_ObjectHideFlags: 0

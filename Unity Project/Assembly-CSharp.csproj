@@ -52,9 +52,10 @@
      <Compile Include="Assets\Scripts\InputControlScripts\CameraControls.cs" />
      <Compile Include="Assets\Scripts\InputControlScripts\InputController.cs" />
      <Compile Include="Assets\Scripts\MarkerAnimation.cs" />
-     <Compile Include="Assets\Scripts\ShootingScripts\BasicShooting.cs" />
      <Compile Include="Assets\Scripts\ShootingScripts\CollisionScript.cs" />
+     <Compile Include="Assets\Scripts\ShootingScripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\ShootingScripts\TankGunRotation.cs" />
+     <Compile Include="Assets\Scripts\ShootingScripts\WeaponSystem.cs" />
      <Compile Include="Assets\Scripts\TurnController.cs" />
      <Compile Include="Assets\Terrain\Terrain.cs" />
      <Compile Include="Assets\Terrain\TerrainMeshGenerator.cs" />

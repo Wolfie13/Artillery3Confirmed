@@ -5,6 +5,14 @@ public class CollisionScript : MonoBehaviour
 {
 	public int damageOnHit = 15;
 	float destroyTime = 15F;
+	
+	TurnController turnControllerScript;
+
+	void Start ()
+	{
+		GameObject turnController = GameObject.FindGameObjectWithTag ("TurnController");
+		turnControllerScript = turnController.GetComponent (typeof (TurnController)) as TurnController;
+	}
 
 	// Update is called once per frame
 	void Update ()
@@ -19,5 +27,7 @@ public class CollisionScript : MonoBehaviour
 			EntityScript player = gameObject.GetComponent (typeof (EntityScript)) as EntityScript; 
 			player.AdjustCurrentHealth ( -damageOnHit );
 		}
+
+		turnControllerScript.EndTurn ();
 	}
 }

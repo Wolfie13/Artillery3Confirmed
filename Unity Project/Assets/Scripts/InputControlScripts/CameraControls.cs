@@ -7,7 +7,7 @@ public class CameraControls : MonoBehaviour
 	float angleVertical;
 	float angleHorizontal;
 
-	int lookSpeed = 4;
+	int lookSpeed = 7;
 
 	bool coupled = false;
 	bool started = false;

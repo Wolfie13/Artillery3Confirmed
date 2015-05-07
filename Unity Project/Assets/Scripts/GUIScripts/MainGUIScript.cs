@@ -9,8 +9,15 @@ public class MainGUIScript : MonoBehaviour
 	int menuHeight = 350; 
 
 	// skirmish menu numbers
+	public string[] mapList;
+	Vector2 scrollPos;
+	int listButtonHeight = 35;
 	int skirmishMenuWidth = 400;
 	int skirmishMenuHeight = 250;
+	int mapPickOptionNumber = 0;
+	int listStartOffset;
+	int listWidth = 150;
+	int listHeight;
 
 	// button variables
 	int buttonWidth = 200;
@@ -37,6 +44,9 @@ public class MainGUIScript : MonoBehaviour
 		relativeStartHeight = Screen.height / 2 - menuHeight / 2;
 		relativeButtonWidth = Screen.width / 2 - buttonWidth / 2;
 		startButtonHeight = relativeStartHeight + buttonHeightOffset - 10;
+
+		listStartOffset = buttonHeightOffset - 5;
+		listHeight = skirmishMenuHeight - listStartOffset - 5;
 
 		if (GUIMethod != null)
 		{
@@ -88,7 +98,17 @@ public class MainGUIScript : MonoBehaviour
 		relativeStartWidth = Screen.width / 2 - skirmishMenuWidth / 2;
 		relativeStartHeight = Screen.height / 2 - skirmishMenuHeight / 2;
 
-		GUI.Box (new Rect ( relativeStartWidth, relativeStartHeight, skirmishMenuWidth, skirmishMenuHeight ), "Skirmish Menu" );
+		GUILayout.BeginArea (new Rect (relativeStartWidth, relativeStartHeight, skirmishMenuWidth, skirmishMenuHeight));
+
+		GUI.Box (new Rect (0, 0, skirmishMenuWidth, skirmishMenuHeight), "Skirmish Menu");
+
+		scrollPos = GUI.BeginScrollView (new Rect (5, listStartOffset, listWidth + 20, listHeight), scrollPos, new Rect (0, 0, listWidth, mapList.Length * listButtonHeight));
+		mapPickOptionNumber = GUI.SelectionGrid (new Rect (0, 0, listWidth, mapList.Length * listButtonHeight), mapPickOptionNumber, mapList, 1);
+		GUI.EndScrollView ();
+
+		GUI.Label (new Rect (listWidth + 40, listStartOffset, skirmishMenuWidth - (listWidth + 40), 30), "Number of Players");
+
+		GUILayout.EndArea ();
 	}
 
 	void MultiplayerGameScreen ()

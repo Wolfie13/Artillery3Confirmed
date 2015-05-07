@@ -17,7 +17,6 @@ public class TurnController : MonoBehaviour
 	// public variables
 	public int turnTime = 20;
 	public Transform turnMarker;
-	public GUIText timer;
 
 	// turn variables
 	float currentTurnTime = 0F;
@@ -33,6 +32,11 @@ public class TurnController : MonoBehaviour
 	{
 		EntityScript entity = players[currentPlayer].GetComponent (typeof (EntityScript)) as EntityScript;
 		entity.PassInput (inputCode);
+	}
+
+	public void EndTurn ()
+	{
+		currentTurnTime = 0.0F;
 	}
 
 	// Use this for initialization
