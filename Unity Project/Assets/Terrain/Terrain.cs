@@ -5,48 +5,59 @@ public class Terrain : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		this.gameObject.AddComponent<TerrainMeshGenerator> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
 	void OnCollisionEnter(Collision col)
 	{
-		if (col.gameObject.CompareTag("projectile"))
+		if (col.gameObject.CompareTag("Projectile"))
 	    {
-			damageTerrain(col.gameObject.transform.position, 100);
+			DamageTerrain(col.gameObject.transform.position, 5);
 			Destroy(col.gameObject);
 		}
 	}
 
-	public const int HORIZONTAL_RES = 800;
-	public const int VERTICAL_RES = 600;
+	public const int HORIZONTAL_RES = 1920;
+	public const int VERTICAL_RES = 1392;
 
-	private static Color CLEAR = new Color(255, 255, 255, 255);
+	private static Color CLEAR = new Color(255, 255, 255, 0);
 
-
-	//TODO: refactor to work in a 2radius area around pos only. For now, this will be fine.
-	void damageTerrain(Vector3 pos, float radius)
+	private void DamageTerrain(Vector3 pos, float radius)
 	{
-		for (int y = 0; y != VERTICAL_RES; y++) {
+		Vector3 p = TerrainMeshGenerator.WorldToTerrain(pos);
+		int pX = (int) Mathf.Round (p.x);
+		int pY = (int) Mathf.Round (p.y);
+		int rad = (int) radius;
+
+		int minX = Mathf.Min (pX - rad, 1);
+		int maxX = Mathf.Max (pX + rad, HORIZONTAL_RES - 1);
+
+		int minY = Mathf.Min (pY - rad, 1);
+		int maxY = Mathf.Max (pY + rad, VERTICAL_RES - 1);
+
+		TerrainMeshGenerator generator = this.gameObject.GetComponent<TerrainMeshGenerator>();
+		Texture2D image = generator.getTerrainMapInstance ();
+
+		for (int y = minY; y != maxY; y++) {
 			//Set up the state machine used for the mesh generator.
-			for (int x = 0; x != HORIZONTAL_RES; x++) {
-				Vector3 vertPos = new Vector3(x, y, 0);
+			for (int x = minX; x != maxX; x++) {
+				Vector3 vertPos = TerrainMeshGenerator.WorldToTerrain(new Vector3(x, y, 0));
 				float dist = Vector3.Distance(vertPos, pos);
 				if (dist > radius) {
-					return;
+					continue;
 				}
 
-				terrainMap.SetPixel(x, y, CLEAR);
+				image.SetPixel(x, y, CLEAR);
 			}
 		}
 
-		TerrainMeshGenerator generator = this.gameObject.GetComponent<TerrainMeshGenerator>();
+		image.Apply ();
+		
+
 		generator.UpdateMesh ();
 	}
-
-	public Texture2D terrainMap = null;
 }

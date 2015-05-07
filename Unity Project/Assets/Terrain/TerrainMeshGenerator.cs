@@ -4,10 +4,21 @@ using System.Collections.Generic;
 
 public class TerrainMeshGenerator : MonoBehaviour {
 
-	public MeshFilter terrainMesh = null;
-	public Texture2D terrainMap = null;
+	private MeshFilter terrainMesh = null;
+	private Texture2D terrainMap = null;
+	private MeshCollider terrainCollider = null;
+
 	// Use this for initialization
 	void Start () {
+		this.terrainMesh = this.gameObject.AddComponent<MeshFilter> ();
+		//Ew. ECS. Again. I even copy-pasted this from Terrain.cs
+		Texture2D tempTex = (Texture2D) this.gameObject.GetComponent<MeshRenderer> ().materials [0].GetTexture(0);
+		this.terrainMap = new Texture2D (tempTex.width, tempTex.height, TextureFormat.RGBA32, false);
+		terrainMap.SetPixels32 (tempTex.GetPixels32 ());
+		terrainMap.Apply ();
+
+		this.terrainCollider = this.gameObject.AddComponent<MeshCollider> ();
+		
 		UpdateMesh ();
 	}
 	
@@ -15,12 +26,19 @@ public class TerrainMeshGenerator : MonoBehaviour {
 	void Update () {
 	}
 
+	public Texture2D getTerrainMapInstance()
+	{
+		return terrainMap;
+	}
+
 	private const int HORIZONTAL_RES = Terrain.HORIZONTAL_RES;
 	private const int VERTICAL_RES = Terrain.VERTICAL_RES;
 
-	private Vector3[] start = {new Vector3(0.0f, 0.5f, 0.5f), new Vector3(0.0f, 0.5f, -0.5f), new Vector3(0.0f, -0.5f, 0.5f), new Vector3(0.0f, -0.5f, -0.5f)};
+	private const float TERRAIN_SCALE = 0.1f;
+	
+	private Vector3[] start = {new Vector3(0.0f, 0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, 0.5f * TERRAIN_SCALE, -5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, -5f)};
 
-	private Vector3[] end = {new Vector3(0.0f, 0.5f, 0.5f), new Vector3(0.0f, 0.5f, -0.5f), new Vector3(0.0f, -0.5f, 0.5f), new Vector3(0.0f, -0.5f, -0.5f)};
+	private Vector3[] end = {new Vector3(0.0f, 0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, 0.5f * TERRAIN_SCALE, -5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, -5f)};
 
 	private static void AddWithOffset (List<Vector3> list, Vector3[] items, Vector3 offset)
 	{
@@ -100,15 +118,32 @@ public class TerrainMeshGenerator : MonoBehaviour {
 		//*/
 
 	}
+	
+	public static Vector3 WorldToTerrain(Vector3 world)
+	{
+		return new Vector3(world.x * TERRAIN_SCALE, world.y * TERRAIN_SCALE, 0);
+	}
+	
+	public static Vector3 TerrainToWorld(Vector3 terrain)
+	{
+		return new Vector3(terrain.x / TERRAIN_SCALE, terrain.y / TERRAIN_SCALE, 0);
+	}
 
 	private static Vector2 GetUVForCoord(int x, int y)
 	{
 		return new Vector2((1f / HORIZONTAL_RES) * x, (1f / VERTICAL_RES) * y);
 	}
 
-	private enum GeneratorState {RUNNING, CLEAR};
 	public void UpdateMesh()
 	{
+		//StartCoroutine(UpdateMeshInt ());
+		UpdateMeshInt ();
+	}
+
+	private enum GeneratorState {RUNNING, CLEAR};
+	private void UpdateMeshInt()
+	{
+		float t = Time.realtimeSinceStartup;
 		Mesh mesh = new Mesh ();
 		this.terrainMesh.mesh = mesh;
 		//Set up our storage for mesh data.
@@ -120,7 +155,7 @@ public class TerrainMeshGenerator : MonoBehaviour {
 			//Set up the state machine used for the mesh generator.
 			GeneratorState genState = GeneratorState.CLEAR;
 			for (int x = 0; x != HORIZONTAL_RES; x++) {
-				Vector3 basePos = new Vector3(x, y, 0);
+				Vector3 basePos = WorldToTerrain(new Vector3(x, y, 0));
 
 				Vector2 uv = GetUVForCoord(x, y);
 				Color c = terrainMap.GetPixelBilinear(uv.x, uv.y);
@@ -148,23 +183,25 @@ public class TerrainMeshGenerator : MonoBehaviour {
 						genState = GeneratorState.RUNNING;
 					}
 				}
-
 			}
 
 			if (genState == GeneratorState.RUNNING) {
 				//Transition to the CLEAR state, build the end of this strip.
-				AddWithOffset(verts, end, new Vector3(HORIZONTAL_RES, y, 0));
+				AddWithOffset(verts, end, WorldToTerrain(new Vector3(HORIZONTAL_RES, y, 0)));
 				AddUVs(uvs, GetUVForCoord(HORIZONTAL_RES, y));
 				AddTriangles(triangles, verts.Count - 1);
 				genState = GeneratorState.CLEAR;
 			}
-		}
 
+		}
 		mesh.vertices = verts.ToArray ();
 		mesh.triangles = triangles.ToArray ();
 		mesh.uv = uvs.ToArray ();
 		mesh.RecalculateBounds ();
 		mesh.RecalculateNormals ();
+
+		this.terrainCollider.sharedMesh = mesh;
+		Debug.Log (Time.realtimeSinceStartup - t);
 	}
 
 	void OnDrawGizmosSelectedOff()
