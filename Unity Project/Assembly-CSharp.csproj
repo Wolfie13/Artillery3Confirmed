@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\ShootingScripts\TankGunRotation.cs" />
      <Compile Include="Assets\Scripts\ShootingScripts\WeaponSystem.cs" />
      <Compile Include="Assets\Scripts\TurnController.cs" />
+     <Compile Include="Assets\Scripts\movement.cs" />
      <Compile Include="Assets\Terrain\Terrain.cs" />
      <Compile Include="Assets\Terrain\TerrainMeshGenerator.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
