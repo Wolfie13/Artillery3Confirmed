@@ -136,16 +136,15 @@ public class TerrainMeshGenerator : MonoBehaviour {
 
 	public void UpdateMesh()
 	{
-		//StartCoroutine(UpdateMeshInt ());
-		UpdateMeshInt ();
+		StartCoroutine(UpdateMeshInt ());
+		//UpdateMeshInt ();
 	}
 
 	private enum GeneratorState {RUNNING, CLEAR};
-	private void UpdateMeshInt()
+	private IEnumerator UpdateMeshInt()
 	{
 		float t = Time.realtimeSinceStartup;
 		Mesh mesh = new Mesh ();
-		this.terrainMesh.mesh = mesh;
 		//Set up our storage for mesh data.
 		List<Vector3> verts = new List<Vector3> ();
 		List<int> triangles = new List<int> ();
@@ -192,16 +191,19 @@ public class TerrainMeshGenerator : MonoBehaviour {
 				AddTriangles(triangles, verts.Count - 1);
 				genState = GeneratorState.CLEAR;
 			}
-
+			if (y % 30 == 0)
+			{
+				yield return new WaitForEndOfFrame();
+			}
 		}
 		mesh.vertices = verts.ToArray ();
 		mesh.triangles = triangles.ToArray ();
 		mesh.uv = uvs.ToArray ();
 		mesh.RecalculateBounds ();
 		mesh.RecalculateNormals ();
-
 		this.terrainCollider.sharedMesh = mesh;
-		Debug.Log (Time.realtimeSinceStartup - t);
+		this.terrainMesh.mesh = mesh;
+		Debug.Log ("Time To Regen Mesh: %f" + (Time.realtimeSinceStartup - t).ToString());
 	}
 
 	void OnDrawGizmosSelectedOff()

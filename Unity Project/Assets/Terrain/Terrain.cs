@@ -10,6 +10,11 @@ public class Terrain : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (dirty) {
+			TerrainMeshGenerator generator = this.gameObject.GetComponent<TerrainMeshGenerator>();
+			generator.UpdateMesh();
+			this.dirty = false;
+		}
 	}
 
 	void OnCollisionEnter(Collision col)
@@ -24,6 +29,8 @@ public class Terrain : MonoBehaviour {
 	public const int HORIZONTAL_RES = 1920;
 	public const int VERTICAL_RES = 1392;
 
+	private bool dirty = false;
+
 	private static Color CLEAR = new Color(255, 255, 255, 0);
 
 	private void DamageTerrain(Vector3 pos, float radius)
@@ -33,11 +40,11 @@ public class Terrain : MonoBehaviour {
 		int pY = (int) Mathf.Round (p.y);
 		int rad = (int) radius;
 
-		int minX = Mathf.Min (pX - rad, 1);
-		int maxX = Mathf.Max (pX + rad, HORIZONTAL_RES - 1);
+		int minX = Mathf.Min (pX - rad, 2);
+		int maxX = Mathf.Max (pX + rad, HORIZONTAL_RES - 2);
 
-		int minY = Mathf.Min (pY - rad, 1);
-		int maxY = Mathf.Max (pY + rad, VERTICAL_RES - 1);
+		int minY = Mathf.Min (pY - rad, 2);
+		int maxY = Mathf.Max (pY + rad, VERTICAL_RES - 2);
 
 		TerrainMeshGenerator generator = this.gameObject.GetComponent<TerrainMeshGenerator>();
 		Texture2D image = generator.getTerrainMapInstance ();
@@ -58,6 +65,6 @@ public class Terrain : MonoBehaviour {
 		image.Apply ();
 		
 
-		generator.UpdateMesh ();
+		this.dirty = true;
 	}
 }
