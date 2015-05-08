@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (InputController))]
 [RequireComponent (typeof (TurnOrderList))]
 public class TurnController : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class TurnController : MonoBehaviour
 
 	// camera details
 	public Camera mainCamera;
-	public GameObject inputController;
+	public InputController inputController;
 
 	// public variables
 	public int turnTime = 20;

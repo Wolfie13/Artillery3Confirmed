@@ -24,7 +24,7 @@ public class CollisionScript : MonoBehaviour
 	{
 		if(col.gameObject.tag == "Player")
 		{
-			EntityScript player = gameObject.GetComponent (typeof (EntityScript)) as EntityScript; 
+			EntityScript player = col.gameObject.GetComponent (typeof (EntityScript)) as EntityScript; 
 			player.AdjustCurrentHealth ( -damageOnHit );
 		}
 

@@ -15,8 +15,6 @@ public class movement : MonoBehaviour {
 						transform.position += Vector3.left * Time.deltaTime;
 		if (Input.GetKey (KeyCode.D))
 						transform.position += Vector3.right * Time.deltaTime;
-	
-
 	}
 
 

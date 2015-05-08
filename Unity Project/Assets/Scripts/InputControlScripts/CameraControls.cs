@@ -32,7 +32,7 @@ public class CameraControls : MonoBehaviour
 			transform.rotation = Quaternion.identity;
 			transform.position = new Vector3 (playerList [currentPlayer].transform.position.x,
 		                                 	  playerList [currentPlayer].transform.position.y + 10,
-		                                 	  playerList [currentPlayer].transform.position.z - 35);
+		                                 	  playerList [currentPlayer].transform.position.z + 35);
 
 
 		}
