@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/247/Unity/Explosions/Scripts
+END
+ContactBurst.cs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/258/Unity/Explosions/Scripts/ContactBurst.cs
+END
+DragMeshFaces.cs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/258/Unity/Explosions/Scripts/DragMeshFaces.cs
+END
+ExplosionScheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/258/Unity/Explosions/Scripts/ExplosionScheduler.cs
+END
+CameraShake.cs
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/258/Unity/Explosions/Scripts/CameraShake.cs
+END
+ExtraDebrisEmitter.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/256/Unity/Explosions/Scripts/ExtraDebrisEmitter.cs
+END
+Reload.cs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/255/Unity/Explosions/Scripts/Reload.cs
+END
+RandomInitialOrientation.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/258/Unity/Explosions/Scripts/RandomInitialOrientation.cs
+END
+SplitMeshBomb.cs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/258/Unity/Explosions/Scripts/SplitMeshBomb.cs
+END
+DustSea.cs
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/258/Unity/Explosions/Scripts/DustSea.cs
+END
+HugeExplosion.cs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/258/Unity/Explosions/Scripts/HugeExplosion.cs
+END
+ParticleEmitterStopper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/255/Unity/Explosions/Scripts/ParticleEmitterStopper.cs
+END

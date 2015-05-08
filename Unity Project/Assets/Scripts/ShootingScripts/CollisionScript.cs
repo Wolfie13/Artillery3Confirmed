@@ -5,6 +5,7 @@ public class CollisionScript : MonoBehaviour
 {
 	public int damageOnHit = 15;
 	float destroyTime = 15F;
+	public GameObject Explosion;
 	
 	TurnController turnControllerScript;
 
@@ -27,7 +28,8 @@ public class CollisionScript : MonoBehaviour
 			EntityScript player = gameObject.GetComponent (typeof (EntityScript)) as EntityScript; 
 			player.AdjustCurrentHealth ( -damageOnHit );
 		}
-
+		GameObject Boom = (GameObject)Instantiate (Explosion, transform.position, transform.rotation);
+		Destroy (Boom, 4f);
 		turnControllerScript.EndTurn ();
 	}
 }
