@@ -1,0 +1,105 @@
+fileFormatVersion: 2
+guid: 51df4e8ecd119c12d0006c2aea4a1b39
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    4300000: LevW3
+    4300002: LevW3 Antenna Large
+    4300004: LevW3 Cannon Base
+    4300006: LevW3 Cannon
+    4300008: LevW3 DualCannon Base
+    4300010: LevW3 DualCannon
+    4300012: LevW3 Missile Port
+    4300014: LevW3 Box Striped
+    4300016: LevW3 Box Striped W
+    4300018: LevW3 Box Striped 2
+    4300020: LevW3 Control Tower
+    4300022: LevW3 Control Tower W
+    4300024: LevW3 Antenna
+    4300026: LevW3 Antenna W
+    4300028: LevW3 Antenna 2
+    4300030: LevW3 Box Basic
+    4300032: LevW3 Nacelle
+    4300034: LevW3 Control Box
+    4300036: LevW3 Box Low
+    4300038: Box
+    4300040: LevW3 Gun Port
+    4300042: LevW3 Mini Gun Port Grey
+    4300044: LevW3 Mini Gun Port Coloured
+    4300046: LevW3 W 1
+    4300048: LevW3 W 2
+    4300050: LevW3 W 3
+    4300052: LevW3 W 4
+    4300054: LevW3 W 5
+    4300056: LevW3 W 6
+    4300058: LevW3 W 7
+    4300060: LevW3 Antenna 2 W
+    4300062: LevW3 Box Low W
+    4300064: LevW3 Antenna Slab
+    4300066: LevW3 Antenna Slab W
+    4300068: LevW3 DualCannon W
+    4300070: LevW3 Shield Generator
+    4300072: LevW3 Shield Generator W
+    4300074: LevW3 Vent
+    4300076: LevW3 Vent W
+    4300078: LevW3 Piston
+    4300080: LevW3 Piston W
+    4300082: LevW3 Piston Vent
+    4300084: LevW3 Piston Vent W
+    4300086: Random Debris
+    4300088: Random Debris (Original)
+    4300090: Random Debris 2
+    4300092: Random Debris 3
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 5
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
