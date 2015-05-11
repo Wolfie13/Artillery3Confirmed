@@ -17,12 +17,12 @@ public class Terrain : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision col)
+	void OnCollisionEnter (Collision col)
 	{
-		if (col.gameObject.CompareTag("Projectile"))
-	    {
-			DamageTerrain(col.gameObject.transform.position, 5);
-			Destroy(col.gameObject);
+		if (col.gameObject.CompareTag ("Projectile")) {
+			ProjectileController pc = col.gameObject.GetComponent<ProjectileController>();
+			DamageTerrain(col.gameObject.transform.position, pc.damage / 2);
+			Destroy (pc.gameObject);
 		}
 	}
 
