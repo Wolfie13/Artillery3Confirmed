@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProjectileController : MonoBehaviour {
-	public float damage;
-	public GameObject Explosion;
-
+public class GameController : MonoBehaviour {
+	public GameObject[] spawnPoints;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,6 +12,4 @@ public class ProjectileController : MonoBehaviour {
 	void Update () {
 	
 	}
-
-
 }
