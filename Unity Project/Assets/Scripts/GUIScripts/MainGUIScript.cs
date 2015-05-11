@@ -19,6 +19,14 @@ public class MainGUIScript : MonoBehaviour
 	int listWidth = 150;
 	int listHeight;
 
+	// multiplayer menu numbers
+	int multiplayerMenuWidth = 150;
+	int multiplayerMenuHeight = 125;
+
+	int multiplayerButtonWidth = 100;
+	int multiplayerButtonHeight = 30;
+	int multiplayerButtHeightOff = 75;
+
 	// button variables
 	int buttonWidth = 200;
 	int buttonHeight = 30;
@@ -113,7 +121,17 @@ public class MainGUIScript : MonoBehaviour
 
 	void MultiplayerGameScreen ()
 	{
-		GUI.Box (new Rect ( relativeStartWidth, relativeStartHeight, menuWidth, menuWidth ), "Multiplayer Options" );
+		relativeStartWidth = Screen.width / 2 - multiplayerMenuWidth / 2;
+		relativeStartHeight = Screen.height / 2 - multiplayerMenuHeight / 2;
+
+		GUILayout.BeginArea (new Rect ( relativeStartWidth, relativeStartHeight, multiplayerMenuWidth, multiplayerMenuHeight ));
+			GUI.Box (new Rect ( 0, 0, multiplayerMenuWidth, multiplayerMenuHeight ), "Multiplayer Options" );
+			GUI.Label (new Rect ( multiplayerMenuWidth / 2 - 35, 40, 100, 25), "Not available");
+			if (GUI.Button (new Rect ( multiplayerMenuWidth / 2 - multiplayerButtonWidth / 2, multiplayerButtHeightOff, multiplayerButtonWidth, multiplayerButtonHeight ), "Go Back"))
+		    {
+				GUIMethod = MainMenuScreen;
+			}
+		GUILayout.EndArea ();
 	}
 
 	void OptionsScreen ()
