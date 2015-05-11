@@ -203,7 +203,7 @@ public class TerrainMeshGenerator : MonoBehaviour {
 		mesh.RecalculateNormals ();
 		this.terrainCollider.sharedMesh = mesh;
 		this.terrainMesh.mesh = mesh;
-		Debug.Log ("Time To Regen Mesh: %f" + (Time.realtimeSinceStartup - t).ToString());
+		Debug.Log ("Time To Regen Mesh: " + (Time.realtimeSinceStartup - t).ToString());
 	}
 
 	void OnDrawGizmosSelectedOff()
