@@ -8,6 +8,8 @@ public class TankController : MonoBehaviour {
 	private GameObject gun;
 	public GameObject bullet;
 
+	private float gunAngle = 0f;
+
 	// Use this for initialization
 	void Start () {
 		foreach (Transform child in this.gameObject.transform) {
@@ -43,13 +45,15 @@ public class TankController : MonoBehaviour {
 	void Update () {
 		if (this.activePlayer)
 		{
-			if (Input.GetKey ("w"))
+			if (Input.GetKey ("q"))
 			{
-				this.gun.transform.Rotate(Vector3.up, Time.deltaTime * 20.0f);
+				this.gunAngle += Time.deltaTime * 20.0f;
+				this.gun.transform.localRotation = Quaternion.AngleAxis(this.gunAngle, Vector3.up);
 			}
-			else if (Input.GetKey ("s"))
+			else if (Input.GetKey ("e"))
 			{
-				this.gun.transform.Rotate(Vector3.up, Time.deltaTime * -20.0f);
+				this.gunAngle -= Time.deltaTime * 20.0f;
+				this.gun.transform.localRotation = Quaternion.AngleAxis(this.gunAngle, Vector3.up);
 			}
 			
 			if (Input.GetKey ("a"))
@@ -74,7 +78,7 @@ public class TankController : MonoBehaviour {
 		Vector3 dir = gun.transform.forward;
 		Vector3 pos = gun.transform.position + (gun.transform.forward * 3.0f);
 		GameObject instantiatedProjectile = Instantiate(bullet, pos, UnityEngine.Quaternion.Euler(dir)) as GameObject;
-		instantiatedProjectile.rigidbody.velocity = dir * 10.0f;
+		instantiatedProjectile.rigidbody.velocity = dir * 40.0f;
 	}
 
 	void OnCollisionEnter (Collision col)
