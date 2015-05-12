@@ -5,14 +5,17 @@ public class GameController : MonoBehaviour {
 	public GameObject[] spawnPoints = null;
 	public GameObject tankPrefab = null;
 	private GameObject marker = null;
-	private GameObject activeTank = null;
-	private LinkedList<GameObject> tanks;
+	[HideInInspector]
+	public GameObject activeTank = null;
+	[HideInInspector]
+	public LinkedList<GameObject> tanks;
 
 	private enum GameState {
 		START, TURN, COOLDOWN, GG
 	}
-	
-	private GameState State;
+
+	[HideInInspector]
+	public GameState State;
 
 	float turnTimer = TURN_LENGTH;
 
