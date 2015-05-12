@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour {
 	[HideInInspector]
 	public LinkedList<GameObject> tanks;
 
-	private enum GameState {
+	public enum GameState {
 		START, TURN, COOLDOWN, GG
 	}
 
