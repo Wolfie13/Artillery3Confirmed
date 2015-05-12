@@ -11,7 +11,8 @@ public class Terrain : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (dirty) {
+		if (dirty)
+		{
 			this.generator.UpdateMesh();
 			this.dirty = false;
 		}
@@ -53,9 +54,11 @@ public class Terrain : MonoBehaviour {
 
 		Texture2D image = this.generator.getTerrainMapInstance ();
 
-		for (int y = minY; y != maxY; y++) {
+		for (int y = minY; y != maxY; y++)
+		{
 			//Set up the state machine used for the mesh generator.
-			for (int x = minX; x != maxX; x++) {
+			for (int x = minX; x != maxX; x++)
+			{
 				Vector3 vertPos = TerrainMeshGenerator.WorldToTerrain(new Vector3(x, y, 0));
 				float dist = Vector3.Distance(vertPos, pos);
 				if (dist > radius) {
