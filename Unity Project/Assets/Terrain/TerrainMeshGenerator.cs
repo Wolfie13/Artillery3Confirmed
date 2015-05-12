@@ -7,6 +7,7 @@ public class TerrainMeshGenerator : MonoBehaviour {
 	private MeshFilter terrainMesh = null;
 	private Texture2D terrainMap = null;
 	private MeshCollider terrainCollider = null;
+	private bool loaded = false;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +29,7 @@ public class TerrainMeshGenerator : MonoBehaviour {
 
 	public bool isLoaded()
 	{
-		return this.terrainCollider != null && this.terrainMesh != null;
+		return this.loaded;
 	}
 
 	public Texture2D getTerrainMapInstance()
@@ -208,6 +209,7 @@ public class TerrainMeshGenerator : MonoBehaviour {
 		mesh.RecalculateNormals ();
 		this.terrainCollider.sharedMesh = mesh;
 		this.terrainMesh.mesh = mesh;
+		this.loaded = true;
 		Debug.Log ("Time To Regen Mesh: " + (Time.realtimeSinceStartup - t).ToString());
 	}
 
