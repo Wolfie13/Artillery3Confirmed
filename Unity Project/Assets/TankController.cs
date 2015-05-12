@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TankController : MonoBehaviour {
-	public bool activePlayer;
+	public bool activePlayer = false;
 	public bool shot = false;
 	private float health;
 	private GameObject gun;
@@ -10,7 +10,6 @@ public class TankController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		activePlayer = true;
 		foreach (Transform child in this.gameObject.transform) {
 			if (child.name.Equals("Gun"))
 			{
@@ -18,10 +17,32 @@ public class TankController : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	public void BeginTurn()
+	{
+		activePlayer = true;
+		shot = false;
+	}
+
+	public void Endturn()
+	{
+		activePlayer = false;
+	}
+
+	public bool HasShot()
+	{
+		return shot;
+	}
+
+	public bool IsDead()
+	{
+		return this.health < 0;
+	}
+
 	// Update is called once per frame
 	void Update () {
-		if (this.activePlayer) {
+		if (this.activePlayer)
+		{
 			if (Input.GetKey ("w"))
 			{
 				this.gun.transform.Rotate(Vector3.up, Time.deltaTime * 20.0f);
@@ -43,12 +64,12 @@ public class TankController : MonoBehaviour {
 			if (Input.GetKey("space") && !shot)
 			{
 				this.shot = true;
-				this.shoot();
+				this.Shoot();
 			}
 		}
 	}
 
-	private void shoot()
+	private void Shoot()
 	{
 		Vector3 dir = gun.transform.forward;
 		Vector3 pos = gun.transform.position + (gun.transform.forward * 3.0f);
@@ -61,6 +82,10 @@ public class TankController : MonoBehaviour {
 		if (col.gameObject.CompareTag ("Projectile")) {
 			ProjectileController pc = col.gameObject.GetComponent<ProjectileController>();
 			this.health -= pc.damage;
+			if (this.health < 0)
+			{
+				//TODO: Die
+			}
 			Destroy (pc.gameObject);
 		}
 	}
