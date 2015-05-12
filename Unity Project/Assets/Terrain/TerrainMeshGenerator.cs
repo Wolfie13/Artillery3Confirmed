@@ -26,6 +26,11 @@ public class TerrainMeshGenerator : MonoBehaviour {
 	void Update () {
 	}
 
+	public bool isLoaded()
+	{
+		return this.terrainCollider != null && this.terrainMesh != null;
+	}
+
 	public Texture2D getTerrainMapInstance()
 	{
 		return terrainMap;
