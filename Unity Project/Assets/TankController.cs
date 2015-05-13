@@ -10,6 +10,8 @@ public class TankController : MonoBehaviour {
 
 	private float gunAngle = 0f;
 
+	private static int TankNum = 0;
+
 	// Use this for initialization
 	void Start () {
 		foreach (Transform child in this.gameObject.transform) {
@@ -18,6 +20,18 @@ public class TankController : MonoBehaviour {
 				this.gun = child.gameObject;
 			}
 		}
+		//Clone the material so we can recolour this tank individually.
+		Material newMat = Instantiate (this.renderer.material) as Material;
+		newMat.SetColor("Diffuse", GetColorForNumber(TankNum++));
+		this.renderer.material = newMat;
+	}
+
+	private static Color GetColorForNumber(int num) {
+		Color result = new Color (0, 0, 0);
+		result.r = ((num % 2) / 2) * 128;
+		result.g = ((num % 4) / 4) * 128;
+		result.b = ((num % 8) / 8) * 128;
+		return result;
 	}
 
 	public void BeginTurn()
