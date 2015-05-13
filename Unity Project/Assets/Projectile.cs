@@ -14,7 +14,7 @@ public sealed class Projectile : MonoBehaviour
 	[SerializeField]                    private float m_damage         = 1f;    //!< The damage the projectile deals on hit.
     [SerializeField]                    private float m_explosiveForce = 10f;   //!< The force to be applied to spawned projectiles and colliding objects.
     [SerializeField, Range (0.1f, 50f)] private float m_range          = 10f;   //!< The area of effect for the projectile.
-    [SerializeField, Range (0.1f, 5f)]  private float m_maxDamageRange = 0.5f;  //!< The range at which maximum, unscaled damage will be applied.
+    [SerializeField, Range (0.1f, 50f)] private float m_maxDamageRange = 0.5f;  //!< The range at which maximum, unscaled damage will be applied.
     [SerializeField, Range (0.1f, 60f)] private float m_explodeTimer   = 10f;   //!< Destroy the projectile after the specified time.
     [SerializeField]                    private bool  m_explodeOnHit   = true;  //!< Causes an explosion upon hitting a collidable object.
     
@@ -179,6 +179,7 @@ public sealed class Projectile : MonoBehaviour
     {
         // Obtain the terrain script and damage the collision mask.
         Terrain terrain = collider.gameObject.GetComponent<Terrain>();
+
         terrain.DamageTerrain (rigidbody.position, m_range);
     }
 
@@ -188,17 +189,24 @@ public sealed class Projectile : MonoBehaviour
         TankController tank = collider.gameObject.GetComponent<TankController>();
         
         // Use the closest point on the boundary to determine the damage distance.
-        float distance = (collider.ClosestPointOnBounds (rigidbody.position) - rigidbody.position).normalized.magnitude;
+        Vector3 distance  = tank.rigidbody.position - rigidbody.position;
+        float magnitude   = distance.magnitude;
+        Vector3 direction = distance / magnitude;
 
         // Reduce the distance by the max damage range to determine how much to scale by.
-        float damageDistance = Mathf.Max (0f, distance - m_maxDamageRange);
-        float maxRange       = Mathf.Max (0f, m_range - m_maxDamageRange);
+        float damageDistance = Mathf.Max (0f, magnitude - m_maxDamageRange);
+        float maxRange       = Mathf.Max (0.001f, m_range - m_maxDamageRange);
+
+        // Determine the lerp value to use for damage and force.
+        float lerp = damageDistance / maxRange;
 
         // Perform a simple lerp to find the desired damage.
-        float finalDamage = Mathf.Lerp (m_damage, 0f, damageDistance / maxRange);
+        float finalDamage = Mathf.Lerp (m_damage, 0f, lerp);
+        float force       = Mathf.Lerp (m_explosiveForce, 0f, lerp);
 
         // Apply damage.
         tank.Damage (finalDamage);
+        tank.rigidbody.AddForce (direction * force, ForceMode.Impulse);
     }
 
     /// <summary>
@@ -216,11 +224,12 @@ public sealed class Projectile : MonoBehaviour
             for (int i = 0; i < m_spawnCount; ++i)
             {
                 // Spawn new projectiles combining the current projectiles velocity with a random force.
-                Vector3 direction = new Vector2 (Random.value, Random.value).normalized;
-                Vector3 velocity  = parentVelocity + direction * (Random.value * m_explosiveForce);
-                Vector3 position  = rigidbody.position + direction * 0.2f;
+                Vector3 unscaledForce = Random.insideUnitCircle;
+                Vector3 position      = rigidbody.position + unscaledForce * 0.2f;
 
-                Instantiate (m_spawnOnDetonation, position, Random.rotation);
+                GameObject child = Instantiate (m_spawnOnDetonation, position, Random.rotation) as GameObject;
+                child.rigidbody.velocity = parentVelocity;
+                child.rigidbody.AddForce (unscaledForce * m_explosiveForce);
             }
         }
     }

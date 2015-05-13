@@ -59,11 +59,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_damage: 1
+  m_explosiveForce: 1000
   m_range: 10
+  m_maxDamageRange: .5
   m_explodeTimer: 10
-  m_clonesOnExplode: 0
-  m_explosionPrefab: {fileID: 0}
   m_explodeOnHit: 1
+  m_spawnOnDetonation: {fileID: 0}
+  m_spawnCount: 0
+  m_maintainVelocity: .5
+  m_explosion: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
