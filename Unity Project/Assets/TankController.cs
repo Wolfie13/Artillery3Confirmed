@@ -55,6 +55,11 @@ public class TankController : MonoBehaviour {
 		return this.health < 0;
 	}
 
+    public void Damage (float damage)
+    {
+        this.health -= damage;
+    }
+
 	// Update is called once per frame
 	void Update () {
 		if (this.activePlayer)
@@ -93,18 +98,5 @@ public class TankController : MonoBehaviour {
 		Vector3 pos = gun.transform.position + (gun.transform.forward * 3.0f);
 		GameObject instantiatedProjectile = Instantiate(bullet, pos, UnityEngine.Quaternion.Euler(dir)) as GameObject;
 		instantiatedProjectile.rigidbody.velocity = dir * 40.0f;
-	}
-
-	void OnCollisionEnter (Collision col)
-	{
-		if (col.gameObject.CompareTag ("Projectile")) {
-			ProjectileController pc = col.gameObject.GetComponent<ProjectileController>();
-			this.health -= pc.damage;
-			if (this.health < 0)
-			{
-				//TODO: Die
-			}
-			Destroy (pc.gameObject);
-		}
 	}
 }

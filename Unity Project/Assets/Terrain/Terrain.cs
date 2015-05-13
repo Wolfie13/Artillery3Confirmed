@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Terrain : MonoBehaviour {
@@ -18,15 +18,6 @@ public class Terrain : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter (Collision col)
-	{
-		if (col.gameObject.CompareTag ("Projectile")) {
-			ProjectileController pc = col.gameObject.GetComponent<ProjectileController>();
-			DamageTerrain(col.gameObject.transform.position, pc.damage / 2);
-			Destroy (pc.gameObject);
-		}
-	}
-
 	public bool isLoaded()
 	{
 		return this.generator.isLoaded ();
@@ -39,7 +30,7 @@ public class Terrain : MonoBehaviour {
 
 	private static Color CLEAR = new Color(255, 255, 255, 0);
 
-	private void DamageTerrain(Vector3 pos, float radius)
+	public void DamageTerrain(Vector3 pos, float radius)
 	{
 		Vector3 p = TerrainMeshGenerator.WorldToTerrain(pos);
 		int pX = (int) Mathf.Round (p.x);
