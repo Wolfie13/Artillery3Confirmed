@@ -4,18 +4,18 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 	public GameObject[] spawnPoints = null;
 	public GameObject tankPrefab = null;
-	private GameObject marker = null;
+	public GameObject marker = null;
+
 	[HideInInspector]
 	public GameObject activeTank = null;
 	[HideInInspector]
 	public LinkedList<GameObject> tanks;
+	[HideInInspector]
+	public GameState State;
 
 	public enum GameState {
 		START, TURN, COOLDOWN, GG
 	}
-
-	[HideInInspector]
-	public GameState State;
 
 	float turnTimer = TURN_LENGTH;
 
@@ -59,6 +59,10 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (activeTank != null && this.marker != null) {
+			this.marker.transform.position = this.activeTank.transform.position + new Vector3(0, 5, 0);
+		}
+
 		if (State == GameState.START) {
 			if (GameObject.Find("Terrain").GetComponent<Terrain>().isLoaded())
 			{
