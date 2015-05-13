@@ -135,7 +135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1001 &40828518
 Prefab:
   m_ObjectHideFlags: 0
@@ -192,7 +192,6 @@ GameObject:
   - 92: {fileID: 582210406}
   - 124: {fileID: 582210405}
   - 81: {fileID: 582210404}
-  - 114: {fileID: 582210409}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -264,7 +263,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &1182222667
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +293,7 @@ Transform:
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
 --- !u!114 &1182222669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +341,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 400010, guid: 76a0a0664b512954baa47d4da59b5630, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76a0a0664b512954baa47d4da59b5630, type: 2}
   m_RootGameObject: {fileID: 1182222667}
@@ -374,7 +377,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &1724129758
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +409,7 @@ MonoBehaviour:
   - {fileID: 1789812059}
   - {fileID: 1449976368}
   tankPrefab: {fileID: 100002, guid: 114f5da544d926a4ea98b8e3b2bf420e, type: 2}
-  marker: {fileID: 100010, guid: c83f9fc45253c7b4a85e3ef1aeee8ca7, type: 2}
+  marker: {fileID: 1182222667}
   activeTank: {fileID: 0}
   State: 0
 --- !u!4 &1724129760
@@ -420,7 +423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &1789812059
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,4 +450,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
