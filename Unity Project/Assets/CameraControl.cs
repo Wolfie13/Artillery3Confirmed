@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraControl : MonoBehaviour {
 	private GameController gameController;
 	private Vector3 originalPosition;
-	private float zoomLevel = 30;
+	public float zoomLevel = 30;
 	private float scrollSpeed = 5;
 	private GameController.GameState lastState;
 	private bool followingBullet;
@@ -21,6 +21,7 @@ public class CameraControl : MonoBehaviour {
 	}
 
 	void Update () {
+		InputHandler ();
 		GameController.GameState currentState = gameController.State;
 
 		if (currentState == GameController.GameState.TURN && lastState != GameController.GameState.TURN) {
@@ -51,14 +52,21 @@ public class CameraControl : MonoBehaviour {
 		}
 
 		lastState = currentState;
-
-		InputHandler ();
 	}
 
 	void InputHandler () {
 		// handle zoom
-		if (zoomLevel > 10.0f) {
-			zoomLevel -= Input.GetAxis ("Mouse ScrollWheel") * scrollSpeed;
+		float change = Input.GetAxis ("Mouse ScrollWheel") * -scrollSpeed;
+
+		if (change - Mathf.Abs (change) < 0.1f){
+			this.transform.position = new Vector3 (this.transform.position.x,
+		                                       	   this.transform.position.y,
+		                                           this.transform.position.z + change);
+			zoomLevel -= change;
+
+			if (zoomLevel < 10.0f) {
+				zoomLevel = 10.1f;
+			}
 		}
 
 		// handle panning
