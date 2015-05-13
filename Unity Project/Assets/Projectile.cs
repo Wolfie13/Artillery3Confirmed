@@ -26,6 +26,9 @@ public sealed class Projectile : MonoBehaviour
     // Special effects.
     [SerializeField] private GameObject m_explosion = null; //!< The object created upon collision with another object.
 
+    // Misc crap.
+    private const int collidableMask = (1 << Layers.terrain) | (1 << Layers.tank);  //!< The layer mask to use when using Physics.OverlapSphere().
+
 	#endregion
 
 
@@ -148,7 +151,7 @@ public sealed class Projectile : MonoBehaviour
     private void ApplyDamage()
     {
         // We need to determine if anything is nearby, if so then damage them appropriately.
-        Collider[] collisions = Physics.OverlapSphere (rigidbody.position, m_range);
+        Collider[] collisions = Physics.OverlapSphere (rigidbody.position, m_range, collidableMask);
 
         if (collisions != null)
         {
@@ -184,8 +187,15 @@ public sealed class Projectile : MonoBehaviour
         // Obtain the controller.
         TankController tank = collider.gameObject.GetComponent<TankController>();
         
-        // Calculate damage to apply.
-        float finalDamage = m_damage;
+        // Use the closest point on the boundary to determine the damage distance.
+        float distance = (collider.ClosestPointOnBounds (rigidbody.position) - rigidbody.position).normalized.magnitude;
+
+        // Reduce the distance by the max damage range to determine how much to scale by.
+        float damageDistance = Mathf.Max (0f, distance - m_maxDamageRange);
+        float maxRange       = Mathf.Max (0f, m_range - m_maxDamageRange);
+
+        // Perform a simple lerp to find the desired damage.
+        float finalDamage = Mathf.Lerp (m_damage, 0f, damageDistance / maxRange);
 
         // Apply damage.
         tank.Damage (finalDamage);
