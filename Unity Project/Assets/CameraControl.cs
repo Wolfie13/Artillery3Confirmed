@@ -10,7 +10,7 @@ public class CameraControl : MonoBehaviour {
 	private bool followingBullet;
 
 	private Vector3 lastPosition;
-	private float mousePanSensitivity = 5;
+	private float mousePanSensitivity = 0.4f;
 
 	// Use this for initialization
 	void Start () {
