@@ -4,11 +4,10 @@ using System.Collections;
 public class CameraControl : MonoBehaviour {
 	private GameController gameController;
 	private Vector3 originalPosition;
-	private GameController.GameState pastState;
 	private float zoomLevel = 30;
 	private float scrollSpeed = 5;
-
 	private GameController.GameState lastState;
+	private bool followingBullet;
 
 	private Vector3 lastPosition;
 	private float mousePanSensitivity = 5;
@@ -27,7 +26,6 @@ public class CameraControl : MonoBehaviour {
 		if (currentState == GameController.GameState.TURN && lastState != GameController.GameState.TURN) {
 			// a new turn has begun, thus focus on the current tank
 			GameObject currentTank = this.gameController.activeTank;
-			TankController currentTankState = currentTank.GetComponent<TankController> ();
 
 			this.transform.position = new Vector3 (currentTank.transform.position.x,
 			                                       currentTank.transform.position.y,
@@ -37,16 +35,22 @@ public class CameraControl : MonoBehaviour {
 		GameObject projectile = GameObject.FindGameObjectWithTag ("Projectile");
 		if (projectile != null) {
 			// if there is a projectile follow it with the camera
+			followingBullet = true;
+
 			this.transform.position = new Vector3 (projectile.transform.position.x,
 			                                       projectile.transform.position.y,
 			                                       projectile.transform.position.z + zoomLevel);
+		}
+
+		else {
+			followingBullet = false;
 		}
 
 		if (currentState == GameController.GameState.GG) {
 			this.transform.position = originalPosition;
 		}
 
-		pastState = currentState;
+		lastState = currentState;
 
 		InputHandler ();
 	}
@@ -58,8 +62,7 @@ public class CameraControl : MonoBehaviour {
 		}
 
 		// handle panning
-		// TODO: NOT WORKING
-		if (Input.GetMouseButton (1))
+		if (Input.GetMouseButton (1) && followingBullet == false)
 		{
 			Vector3 deltaMov = Input.mousePosition - lastPosition;
 			transform.Translate (deltaMov.x * mousePanSensitivity, deltaMov.y * mousePanSensitivity, 0);
