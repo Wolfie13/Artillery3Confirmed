@@ -10,7 +10,6 @@ public class TankController : MonoBehaviour {
 
 	private float gunAngle = 0f;
 
-	private static int TankNum = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -22,16 +21,12 @@ public class TankController : MonoBehaviour {
 		}
 		//Clone the material so we can recolour this tank individually.
 		Material newMat = Instantiate (this.renderer.material) as Material;
-		newMat.SetColor("Diffuse", GetColorForNumber(TankNum++));
+		newMat.SetColor("_Color", RandomColor());
 		this.renderer.material = newMat;
 	}
 
-	private static Color GetColorForNumber(int num) {
-		Color result = new Color (0, 0, 0);
-		result.r = ((num % 2) / 2) * 128;
-		result.g = ((num % 4) / 4) * 128;
-		result.b = ((num % 8) / 8) * 128;
-		return result;
+	private static Color RandomColor() {
+		return new Color (Random.Range (0, 255), Random.Range (0, 255), Random.Range (0, 255));
 	}
 
 	public void BeginTurn()
@@ -43,6 +38,7 @@ public class TankController : MonoBehaviour {
 	public void Endturn()
 	{
 		activePlayer = false;
+		SelfRight ();
 	}
 
 	public bool HasShot()
@@ -53,6 +49,13 @@ public class TankController : MonoBehaviour {
 	public bool IsDead()
 	{
 		return this.health < 0;
+	}
+
+	public void SelfRight()
+	{
+		if (Vector3.Dot(transform.up,Vector3.up) < 0) {
+			this.gameObject.rigidbody.velocity = (Vector3.up * -10);
+		}
 	}
 
 	// Update is called once per frame
