@@ -59,10 +59,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (activeTank != null && this.marker != null) {
-			this.marker.transform.position = this.activeTank.transform.position + new Vector3(0, 5, 0);
-		}
-
 		if (State == GameState.START) {
 			if (GameObject.Find("Terrain").GetComponent<Terrain>().isLoaded())
 			{
@@ -91,8 +87,8 @@ public class GameController : MonoBehaviour {
 			TankController activeTankController = activeTank.GetComponent<TankController> ();
 
 			//TODOS:
-			if (marker != null) {
-				//Put Marker above active tank
+			if (activeTank != null && this.marker != null) {
+				this.marker.transform.position = this.activeTank.transform.position + new Vector3(0, 10, 0);
 			}
 
 
