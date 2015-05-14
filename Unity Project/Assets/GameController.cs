@@ -85,7 +85,7 @@ public class GameController : MonoBehaviour {
 			labelStyle.fontSize = 15;
 
 			GUI.Label (new Rect (0, 0, 100, 20), TurnPhase, labelStyle);
-			GUI.Label (new Rect (0, 15, 100, 20), ((int)(Mathf.Round (this.turnTimer))).ToString ());
+			GUI.Label (new Rect (0, 15, 100, 20), ((int)(Mathf.Round (this.turnTimer))).ToString (), labelStyle);
 
 		GUI.EndGroup ();
 
@@ -99,11 +99,11 @@ public class GameController : MonoBehaviour {
 					GUI.Label (new Rect (5, 0, 140, 20), activeTank.name, labelStyle);
 
 					TankController tankCont = activeTank.GetComponent<TankController> ();
-					string healthString = "Health: " + tankCont;
-					GUI.Label (new Rect (5, 0, 140, 35), healthString, labelStyle);
+					string healthString = "Health: " + tankCont.health;
+					GUI.Label (new Rect (5, 20, 140, 20), healthString, labelStyle);
 
+					// to be added: Weapons
 			}
-
 		GUI.EndGroup ();
 	}
 

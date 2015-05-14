@@ -17,8 +17,9 @@ function OneShotEmitters ()
 			child.particleEmitter.emit = false;
 			child.GetComponent(ParticleAnimator).autodestruct = true;
 		}
-		i++;	
-	}	
+		i++;
+	}
+	UnityEngine.Object.Destroy(gameObject, 5);
 }
 
 function Explosion ()

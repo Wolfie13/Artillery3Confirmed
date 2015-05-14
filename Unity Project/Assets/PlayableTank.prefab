@@ -30,6 +30,7 @@ GameObject:
   - 64: {fileID: 6400000}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 9
   m_Name: PlayableTank
   m_TagString: Player
@@ -158,6 +159,27 @@ MonoBehaviour:
   activePlayer: 0
   shot: 0
   bullet: {fileID: 100000, guid: 0aba8dcd768840a4c9217aa06cf2da37, type: 2}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6b448fd02af724595e8ac8004e34c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_weapons:
+  - name: Missile
+    timer: 60
+    projectile: {fileID: 11400000, guid: 0aba8dcd768840a4c9217aa06cf2da37, type: 2}
+  - name: Grenade
+    timer: 5
+    projectile: {fileID: 11400000, guid: 3576d48b22858914d817423f6aad5f0b, type: 2}
+  - name: Cluster Bomb
+    timer: 5
+    projectile: {fileID: 11400000, guid: 860ea72692857164fb27021bbe5c2d9a, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
