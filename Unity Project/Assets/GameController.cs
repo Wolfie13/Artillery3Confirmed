@@ -45,7 +45,12 @@ public class GameController : MonoBehaviour {
 		turnTimer = 1.0f;
 	}
 
-	private void NextTank(int callNum = 0)
+	private void NextTank()
+	{
+		NextTank (0);
+	}
+
+	private void NextTank(int callNum)
 	{
 		if (callNum > tanks.Count) {
 			return;
