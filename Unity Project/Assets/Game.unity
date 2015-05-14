@@ -136,6 +136,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &479529853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 08b92b722cba4ed4c96b925b78b6ef2d, type: 2}
+  m_PrefabInternal: {fileID: 1180142587}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 479529856}
+  - 23: {fileID: 479529855}
+  - 114: {fileID: 479529854}
+  m_Layer: 8
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &479529854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 08b92b722cba4ed4c96b925b78b6ef2d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1180142587}
+  m_GameObject: {fileID: 479529853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24977d8bfa3d9d7468f987ca72ef1a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &479529855
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: 08b92b722cba4ed4c96b925b78b6ef2d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1180142587}
+  m_GameObject: {fileID: 479529853}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8367622f4c8f72a4fa8286d4483c253a, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!4 &479529856
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 08b92b722cba4ed4c96b925b78b6ef2d, type: 2}
+  m_PrefabInternal: {fileID: 1180142587}
+  m_GameObject: {fileID: 479529853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &582210403
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +211,7 @@ GameObject:
   - 124: {fileID: 582210405}
   - 81: {fileID: 582210404}
   - 45: {fileID: 582210409}
+  - 114: {fileID: 582210410}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -220,7 +283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!45 &582210409
 Skybox:
   m_ObjectHideFlags: 0
@@ -229,6 +292,17 @@ Skybox:
   m_GameObject: {fileID: 582210403}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: e1f809f9000434f4d976f132684abbea, type: 2}
+--- !u!114 &582210410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 582210403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0b5e13fd75e8948b4cd47bc7e2a922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1180142587
 Prefab:
   m_ObjectHideFlags: 0
@@ -274,7 +348,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08b92b722cba4ed4c96b925b78b6ef2d, type: 2}
-  m_RootGameObject: {fileID: 40816707}
+  m_RootGameObject: {fileID: 479529853}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1 &1182222667
@@ -306,7 +380,7 @@ Transform:
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &1182222669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,7 +460,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &1655596132
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +523,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1724129758
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +569,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &1789812059
 GameObject:
   m_ObjectHideFlags: 0
