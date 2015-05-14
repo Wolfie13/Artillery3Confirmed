@@ -63,7 +63,7 @@ public class MainGUIScript : MonoBehaviour
 		if ( GUI.Button (new Rect ( relativeButtonWidth, startButtonHeight, buttonWidth, buttonHeight ), "New Game" ))
 		{
 			// random stuff
-			Application.LoadLevel ( "Dummy" );
+			Application.LoadLevel ( 1 );
 		}
 
 		// button for "Load Game"
