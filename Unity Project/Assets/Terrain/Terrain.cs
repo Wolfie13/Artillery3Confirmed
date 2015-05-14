@@ -37,10 +37,10 @@ public class Terrain : MonoBehaviour {
 		int pY = (int) Mathf.Round (p.y);
 		int rad = (int) radius;
 
-		int minX = Mathf.Min (pX - rad, 2);
+		int minX = Mathf.Max (pX - rad, 2);
 		int maxX = Mathf.Max (pX + rad, HORIZONTAL_RES - 2);
 
-		int minY = Mathf.Min (pY - rad, 2);
+		int minY = Mathf.Max (pY - rad, 2);
 		int maxY = Mathf.Max (pY + rad, VERTICAL_RES - 2);
 
 		Texture2D image = this.generator.getTerrainMapInstance ();
