@@ -86,21 +86,24 @@ public class GameController : MonoBehaviour {
 			GUI.Label (new Rect (0, 0, 100, 20), TurnPhase, labelStyle);
 			GUI.Label (new Rect (0, 15, 100, 20), ((int)(Mathf.Round (this.turnTimer))).ToString ());
 
+			
+
 		GUI.EndGroup ();
 
 		// Tank info
-		GUI.BeginGroup (new Rect (Screen.width - 150, Screen.height - 100, 150, 100));
+		GUI.BeginGroup (new Rect (Screen.width - 250, Screen.height - 80, 250, 80));
 
 			if (activeTank != null) {
 					labelStyle.alignment = TextAnchor.MiddleLeft;
 
-					GUI.Box (new Rect (0, 0, 140, 90), "");
-					GUI.Label (new Rect (5, 0, 140, 20), activeTank.name, labelStyle);
+					GUI.Box (new Rect (0, 0, 240, 70), "");
+					GUI.Label (new Rect (5, 0, 240, 20), activeTank.name, labelStyle);
 
 					TankController tankCont = activeTank.GetComponent<TankController> ();
-					string healthString = "Health: " + tankCont;
-					GUI.Label (new Rect (5, 0, 140, 35), healthString, labelStyle);
+					string healthString = "Health: " + tankCont.health;
+					GUI.Label (new Rect (5, 20, 240, 25), healthString, labelStyle);
 
+					GUI.Label (new Rect (5, 40, 240, 25), "Current Weapon: ", labelStyle);
 			}
 
 		GUI.EndGroup ();
