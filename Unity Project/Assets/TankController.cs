@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (WeaponInventory))]
 public class TankController : MonoBehaviour {
 	public bool activePlayer = false;
 	public bool shot = false;
 	public float health = 100;
 	private GameObject gun;
 	public GameObject bullet;
+    private WeaponInventory weapons;
 
 	private float gunAngle = 0f;
 
@@ -23,6 +25,7 @@ public class TankController : MonoBehaviour {
 		Material newMat = Instantiate (this.renderer.material) as Material;
 		newMat.SetColor("_Color", RandomColor());
 		this.renderer.material = newMat;
+        weapons = GetComponent<WeaponInventory>();
 	}
 
 	private static Color RandomColor() {
@@ -109,7 +112,8 @@ public class TankController : MonoBehaviour {
 	{
 		Vector3 dir = gun.transform.forward;
 		Vector3 pos = gun.transform.position + (gun.transform.forward * 3.0f);
-		GameObject instantiatedProjectile = Instantiate(bullet, pos, UnityEngine.Quaternion.Euler(dir)) as GameObject;
-		instantiatedProjectile.rigidbody.velocity = dir * 40.0f;
+        Vector3 vel = dir * 40f;
+		
+        weapons.equippedWeapon.Fire (pos, vel, transform.rotation);
 	}
 }
