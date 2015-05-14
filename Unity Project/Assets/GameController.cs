@@ -71,20 +71,41 @@ public class GameController : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		GUI.BeginGroup (new Rect (Screen.width / 2 - 50, 10, 100, 100));
-		//Don't Ask What This Function Does It's Not Important
-		string TurnPhase = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase (this.State.ToString ());
-		GUI.Box (new Rect(0, 0, 100, 40), "");
-		GUI.Label(new Rect(12, 0, 90, 20), TurnPhase);
-		GUI.Label(new Rect(12, 20, 90, 20), string.Format("{0:00}", this.turnTimer));
+		GUIStyle labelStyle = new GUIStyle (GUI.skin.GetStyle ("Label"));
+
+		// Timer & Turn State
+		GUI.BeginGroup (new Rect (Screen.width / 2 - 50, 10, 100, 50));
+
+			GUI.Box (new Rect (0, 0, 100, 40), "");
+			string TurnPhase = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase (this.State.ToString ());
+
+			labelStyle.alignment = TextAnchor.UpperCenter;
+			labelStyle.fontStyle = FontStyle.Bold;
+			labelStyle.fontSize = 15;
+
+			GUI.Label (new Rect (0, 0, 100, 20), TurnPhase, labelStyle);
+			GUI.Label (new Rect (0, 15, 100, 20), ((int)(Mathf.Round (this.turnTimer))).ToString ());
+
 		GUI.EndGroup ();
-		
-		GUI.BeginGroup (new Rect (Screen.width - 300, Screen.height - 200, 300, 200));
-		GUI.Box(new Rect(0,0,300,200), "");
-		
+
+		// Tank info
+		GUI.BeginGroup (new Rect (Screen.width - 150, Screen.height - 100, 150, 100));
+
+			if (activeTank != null) {
+					labelStyle.alignment = TextAnchor.MiddleLeft;
+
+					GUI.Box (new Rect (0, 0, 140, 90), "");
+					GUI.Label (new Rect (5, 0, 140, 20), activeTank.name, labelStyle);
+
+					TankController tankCont = activeTank.GetComponent<TankController> ();
+					string healthString = "Health: " + tankCont;
+					GUI.Label (new Rect (5, 0, 140, 35), healthString, labelStyle);
+
+			}
+
 		GUI.EndGroup ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (activeTank != null && this.marker != null) {
