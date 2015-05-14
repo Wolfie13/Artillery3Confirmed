@@ -7,7 +7,8 @@ public class CameraControl : MonoBehaviour {
 	private float zoomLevel = 30;
 	private float scrollSpeed = 5;
 	private GameController.GameState lastState;
-	private bool followingBullet;
+	private bool followingBullet = false;
+	private bool followingTank = true;
 
 	private Vector3 lastPosition;
 	private float mousePanSensitivity = 0.4f;
@@ -23,7 +24,7 @@ public class CameraControl : MonoBehaviour {
 	void Update () {
 		GameController.GameState currentState = gameController.State;
 
-		if (currentState == GameController.GameState.TURN && lastState != GameController.GameState.TURN) {
+		if (currentState == GameController.GameState.TURN && (lastState != GameController.GameState.TURN || followingTank)) {
 			// a new turn has begun, thus focus on the current tank
 			GameObject currentTank = this.gameController.activeTank;
 
@@ -52,17 +53,32 @@ public class CameraControl : MonoBehaviour {
 
 		lastState = currentState;
 
-		InputHandler ();
+		if (currentState != GameController.GameState.COOLDOWN && currentState != GameController.GameState.GG) {
+			InputHandler ();
+		}
 	}
 
 	void InputHandler () {
 		// handle zoom
-		if (zoomLevel > 10.0f) {
-			zoomLevel -= Input.GetAxis ("Mouse ScrollWheel") * scrollSpeed;
+		float change = Input.GetAxis ("Mouse ScrollWheel") * -scrollSpeed;
+		
+		if (change - Mathf.Abs (change) < 0.05f && zoomLevel - change > 10.0f) {
+			this.transform.position = new Vector3 (this.transform.position.x,
+			                                       this.transform.position.y,
+			                                       this.transform.position.z + change);
+			zoomLevel -= change;
+			
+			if (zoomLevel < 10.0f) {
+				zoomLevel = 10.2f;
+			}
+		}
+
+		if (Input.GetMouseButtonDown (2)) {
+			followingTank = !followingTank;
 		}
 
 		// handle panning
-		if (Input.GetMouseButton (1) && followingBullet == false)
+		if (Input.GetMouseButton (1) && followingBullet == false && followingTank == false)
 		{
 			Vector3 deltaMov = Input.mousePosition - lastPosition;
 			transform.Translate (deltaMov.x * mousePanSensitivity, deltaMov.y * mousePanSensitivity, 0);
