@@ -26,7 +26,7 @@ public class TankController : MonoBehaviour {
 	}
 
 	private static Color RandomColor() {
-		return new Color (Random.Range (0, 255), Random.Range (0, 255), Random.Range (0, 255));
+		return new Color (Random.value, Random.value, Random.value);
 	}
 
 	public void BeginTurn()
