@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour {
 	public GameObject[] spawnPoints = null;
 	public GameObject tankPrefab = null;
 	public MarkerControl marker = null;
+	public AudioClip  audio = null;
 
 	[HideInInspector]
 	public TankController activeTank = null;
@@ -132,6 +133,10 @@ public class GameController : MonoBehaviour {
 				TankController newTankController = activeTank.GetComponent<TankController>();
 				newTankController.BeginTurn();
 				Debug.Log ("Turn Cooldown ended.");
+				if(audio)
+				{
+					AudioSource.PlayClipAtPoint (audio, transform.position);
+				}
 			}
 			return;
 		}

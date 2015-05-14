@@ -25,6 +25,7 @@ public sealed class Projectile : MonoBehaviour
     
     // Special effects.
     [SerializeField] private GameObject m_explosion = null; //!< The object created upon collision with another object.
+	[SerializeField] private AudioClip  m_audio     = null;
 
     // Misc crap.
     private const int collidableMask = (1 << Layers.terrain) | (1 << Layers.tank);  //!< The layer mask to use when using Physics.OverlapSphere().
@@ -244,6 +245,11 @@ public sealed class Projectile : MonoBehaviour
         {
             Instantiate (m_explosion, rigidbody.position, rigidbody.rotation);
         }
+
+		if (m_audio) 
+		{
+			AudioSource.PlayClipAtPoint (m_audio, rigidbody.position);
+		}
     }
 
     #endregion

@@ -68,6 +68,7 @@ MonoBehaviour:
   m_spawnCount: 0
   m_maintainVelocity: .5
   m_explosion: {fileID: 100012, guid: ab2d22f83ef6742a195f5ba0ebd0bb82, type: 2}
+  m_audio: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
