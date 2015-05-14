@@ -42,9 +42,11 @@ public class TerrainMeshGenerator : MonoBehaviour {
 
 	private const float TERRAIN_SCALE = 0.1f;
 	
-	private Vector3[] start = {new Vector3(0.0f, 0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, 0.5f * TERRAIN_SCALE, -5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, -5f)};
+	private Vector3[] StartVerts = {new Vector3(0.0f, 0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, 0.5f * TERRAIN_SCALE, -5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, -5f)};
 
-	private Vector3[] end = {new Vector3(0.0f, 0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, 0.5f * TERRAIN_SCALE, -5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, -5f)};
+	private Vector3[] EndVerts = {new Vector3(0.0f, 0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, 0.5f * TERRAIN_SCALE, -5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, 5f), new Vector3(0.0f, -0.5f * TERRAIN_SCALE, -5f)};
+
+	private Vector3[] DefaultNormals = {Vector3.up, Vector3.up, Vector3.forward, Vector3.back};
 
 	private static void AddWithOffset (List<Vector3> list, Vector3[] items, Vector3 offset)
 	{
@@ -142,17 +144,18 @@ public class TerrainMeshGenerator : MonoBehaviour {
 
 	public void UpdateMesh()
 	{
-		StartCoroutine(UpdateMeshInt ());
-		//UpdateMeshInt ();
+		//StartCoroutine(UpdateMeshInt ());
+		UpdateMeshInt ();
 	}
 
 	private enum GeneratorState {RUNNING, CLEAR};
-	private IEnumerator UpdateMeshInt()
+	private void UpdateMeshInt()
 	{
 		float t = Time.realtimeSinceStartup;
 		Mesh mesh = new Mesh ();
 		//Set up our storage for mesh data.
 		List<Vector3> verts = new List<Vector3> ();
+		List<Vector3> normals = new List<Vector3> ();
 		List<int> triangles = new List<int> ();
 		List<Vector2> uvs = new List<Vector2>();
 
@@ -168,7 +171,8 @@ public class TerrainMeshGenerator : MonoBehaviour {
 				if (genState == GeneratorState.RUNNING) {
 					if (c.a < 0.1) {
 						//Transition to the CLEAR state, build the end of this strip.
-						AddWithOffset(verts, end, basePos);
+						AddWithOffset(verts, EndVerts, basePos);
+						AddWithOffset(normals, DefaultNormals, Vector3.zero);
 						AddUVs(uvs, uv);
 						AddTriangles(triangles, verts.Count - 1);
 						genState = GeneratorState.CLEAR;
@@ -183,7 +187,8 @@ public class TerrainMeshGenerator : MonoBehaviour {
 						continue;
 					} else {
 						//Build the start of a strip.
-						AddWithOffset(verts, start, basePos);
+						AddWithOffset(verts, StartVerts, basePos);
+						AddWithOffset(normals, DefaultNormals, Vector3.zero);
 						AddUVs(uvs, uv);
 						genState = GeneratorState.RUNNING;
 					}
@@ -192,21 +197,18 @@ public class TerrainMeshGenerator : MonoBehaviour {
 
 			if (genState == GeneratorState.RUNNING) {
 				//Transition to the CLEAR state, build the end of this strip.
-				AddWithOffset(verts, end, WorldToTerrain(new Vector3(HORIZONTAL_RES, y, 0)));
+				AddWithOffset(verts, EndVerts, WorldToTerrain(new Vector3(HORIZONTAL_RES, y, 0)));
+				AddWithOffset(normals, DefaultNormals, Vector3.zero);
 				AddUVs(uvs, GetUVForCoord(HORIZONTAL_RES, y));
 				AddTriangles(triangles, verts.Count - 1);
 				genState = GeneratorState.CLEAR;
-			}
-			if (y % 30 == 0)
-			{
-				yield return new WaitForEndOfFrame();
 			}
 		}
 		mesh.vertices = verts.ToArray ();
 		mesh.triangles = triangles.ToArray ();
 		mesh.uv = uvs.ToArray ();
+		mesh.normals = normals.ToArray ();
 		mesh.RecalculateBounds ();
-		mesh.RecalculateNormals ();
 		this.terrainCollider.sharedMesh = mesh;
 		this.terrainMesh.mesh = mesh;
 		this.loaded = true;
