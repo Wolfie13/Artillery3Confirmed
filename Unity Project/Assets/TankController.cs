@@ -54,7 +54,7 @@ public class TankController : MonoBehaviour {
 	public void SelfRight()
 	{
 		if (Vector3.Dot(transform.up,Vector3.up) < 0) {
-			this.gameObject.rigidbody.velocity = (Vector3.up * -10);
+			this.gameObject.rigidbody.velocity = (Vector3.up * 20);
 		}
 	}
     public void Damage (float damage)
@@ -69,11 +69,13 @@ public class TankController : MonoBehaviour {
 			if (Input.GetKey ("q"))
 			{
 				this.gunAngle += Time.deltaTime * 20.0f;
+				this.gunAngle = Mathf.Clamp(this.gunAngle, -80, 80);
 				this.gun.transform.localRotation = Quaternion.AngleAxis(this.gunAngle, Vector3.up);
 			}
 			else if (Input.GetKey ("e"))
 			{
 				this.gunAngle -= Time.deltaTime * 20.0f;
+				this.gunAngle = Mathf.Clamp(this.gunAngle, -80, 80);
 				this.gun.transform.localRotation = Quaternion.AngleAxis(this.gunAngle, Vector3.up);
 			}
 			
