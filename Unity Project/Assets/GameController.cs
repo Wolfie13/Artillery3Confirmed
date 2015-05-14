@@ -45,14 +45,22 @@ public class GameController : MonoBehaviour {
 		turnTimer = 1.0f;
 	}
 
-	private void NextTank()
+	private void NextTank(int callNum = 0)
 	{
+		if (callNum > tanks.Count) {
+			return;
+		}
+		
 		TankController oldTankController = activeTank.GetComponent<TankController>();
-
+		
 		tanks.AddFirst (tanks.Last.Value);
 		tanks.RemoveLast ();
-
+		
 		activeTank = tanks.First.Value;
+		TankController newTankController = activeTank.GetComponent<TankController>();
+		if (newTankController.IsDead ()) {
+			NextTank(callNum++);
+		}
 
 		oldTankController.Endturn ();
 	}
