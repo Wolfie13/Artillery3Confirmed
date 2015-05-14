@@ -4,7 +4,7 @@ using System.Collections;
 public class TankController : MonoBehaviour {
 	public bool activePlayer = false;
 	public bool shot = false;
-	private float health;
+	public float health = 100;
 	private GameObject gun;
 	public GameObject bullet;
 
@@ -53,7 +53,9 @@ public class TankController : MonoBehaviour {
 
 	public void SelfRight()
 	{
-		if (Vector3.Dot(transform.up,Vector3.up) < 0) {
+		float d = Vector3.Dot (transform.up.normalized, Vector3.up);
+
+		if (d > 0.5 || d < -0.5) {
 			this.gameObject.rigidbody.velocity = (Vector3.up * 20);
 		}
 	}
@@ -64,6 +66,13 @@ public class TankController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (!this.IsDead()) 
+		{
+			Vector3 pos = this.transform.position;
+			pos.z = 0;
+			this.transform.position = pos;
+		}
+
 		if (this.activePlayer)
 		{
 			if (Input.GetKey ("q"))
