@@ -64,6 +64,21 @@ public class GameController : MonoBehaviour {
 
 		oldTankController.Endturn ();
 	}
+
+	void OnGUI () {
+		GUI.BeginGroup (new Rect (Screen.width / 2 - 50, 10, 100, 100));
+		//Don't Ask What This Function Does It's Not Important
+		string TurnPhase = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase (this.State.ToString ());
+		GUI.Box (new Rect(0, 0, 100, 40), "");
+		GUI.Label(new Rect(12, 0, 90, 20), TurnPhase);
+		GUI.Label(new Rect(12, 20, 90, 20), string.Format("{0:00}", this.turnTimer));
+		GUI.EndGroup ();
+		
+		GUI.BeginGroup (new Rect (Screen.width - 300, Screen.height - 200, 300, 200));
+		GUI.Box(new Rect(0,0,300,200), "");
+		
+		GUI.EndGroup ();
+	}
 	
 	// Update is called once per frame
 	void Update () {
