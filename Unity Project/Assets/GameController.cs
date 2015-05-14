@@ -4,12 +4,12 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 	public GameObject[] spawnPoints = null;
 	public GameObject tankPrefab = null;
-	public GameObject marker = null;
+	public MarkerControl marker = null;
 
 	[HideInInspector]
-	public GameObject activeTank = null;
+	public TankController activeTank = null;
 	[HideInInspector]
-	public LinkedList<GameObject> tanks;
+	public LinkedList<TankController> tanks;
 	[HideInInspector]
 	public GameState State;
 
@@ -26,21 +26,21 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//TODO: Instantiate a Marker.
-		tanks = new LinkedList<GameObject>();
+		tanks = new LinkedList<TankController>();
 	}
 
 	void StartGame() {
 		int i = 1;
 		foreach (GameObject spawnPoint in spawnPoints) {
-			GameObject newTank = Instantiate(tankPrefab, spawnPoint.transform.position, Quaternion.AngleAxis(90.0f, Vector3.left)) as GameObject;
+			GameObject t = Instantiate(tankPrefab, spawnPoint.transform.position, Quaternion.AngleAxis(90.0f, Vector3.left)) as GameObject;
+			TankController newTank = t.GetComponent<TankController>();
 			tanks.AddLast(newTank);
-			newTank.name = "Tank " + (i++).ToString();
+			newTank.gameObject.name = "Tank " + (i++).ToString();
 		}
 
-		GameObject firstTank = tanks.First.Value;
-		TankController controller = firstTank.GetComponent<TankController>();
+		TankController firstTank = tanks.First.Value;
 		activeTank = firstTank;
-		controller.BeginTurn();
+		firstTank.BeginTurn();
 		this.State = GameState.COOLDOWN;
 		turnTimer = 1.0f;
 	}
@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (activeTank != null && this.marker != null) {
-			this.marker.transform.position = this.activeTank.transform.position + new Vector3(0, 5, 0);
+			this.marker.targetObject = activeTank.gameObject;
 		}
 
 		if (State == GameState.START) {
@@ -126,10 +126,9 @@ public class GameController : MonoBehaviour {
 
 			//Count the number of dead tanks.
 			int numDead = 0;
-			foreach (GameObject g in tanks)
+			foreach (TankController t in tanks)
 			{
-				TankController controller = g.GetComponent<TankController>();
-				if (controller.IsDead())
+				if (t.IsDead())
 				{
 					numDead++;
 				}

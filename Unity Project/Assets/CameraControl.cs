@@ -26,7 +26,7 @@ public class CameraControl : MonoBehaviour {
 
 		if (currentState == GameController.GameState.TURN && (lastState != GameController.GameState.TURN || followingTank)) {
 			// a new turn has begun, thus focus on the current tank
-			GameObject currentTank = this.gameController.activeTank;
+			TankController currentTank = this.gameController.activeTank;
 
 			this.transform.position = new Vector3 (currentTank.transform.position.x,
 			                                       currentTank.transform.position.y,
