@@ -389,7 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe97e513382cfb4e9d8eb1938a566a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 0}
 --- !u!23 &1182222670
 Renderer:
   m_ObjectHideFlags: 0
@@ -581,7 +580,7 @@ MonoBehaviour:
   - {fileID: 1545129626}
   - {fileID: 695204862}
   tankPrefab: {fileID: 100002, guid: 114f5da544d926a4ea98b8e3b2bf420e, type: 2}
-  marker: {fileID: 0}
+  marker: {fileID: 100010, guid: c83f9fc45253c7b4a85e3ef1aeee8ca7, type: 2}
   activeTank: {fileID: 0}
   State: 0
 --- !u!4 &1724129760
