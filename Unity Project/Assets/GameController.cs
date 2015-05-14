@@ -98,11 +98,11 @@ public class GameController : MonoBehaviour {
 					GUI.Label (new Rect (5, 0, 140, 20), activeTank.name, labelStyle);
 
 					TankController tankCont = activeTank.GetComponent<TankController> ();
-					string healthString = "Health: " + tankCont;
+					string healthString = "Health: " + tankCont.health;
 					GUI.Label (new Rect (5, 0, 140, 35), healthString, labelStyle);
 
+					// to be added: Weapons
 			}
-
 		GUI.EndGroup ();
 	}
 
