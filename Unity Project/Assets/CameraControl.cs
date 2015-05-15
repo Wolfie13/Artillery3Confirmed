@@ -30,7 +30,7 @@ public class CameraControl : MonoBehaviour {
 
 			this.transform.position = new Vector3 (currentTank.transform.position.x,
 			                                       currentTank.transform.position.y,
-			                                       currentTank.transform.position.z + zoomLevel);
+			                                       zoomLevel);
 		}
 
 		GameObject projectile = GameObject.FindGameObjectWithTag ("Projectile");
@@ -40,7 +40,7 @@ public class CameraControl : MonoBehaviour {
 
 			this.transform.position = new Vector3 (projectile.transform.position.x,
 			                                       projectile.transform.position.y,
-			                                       projectile.transform.position.z + zoomLevel);
+			                                       zoomLevel);
 		}
 
 		else {
@@ -60,12 +60,12 @@ public class CameraControl : MonoBehaviour {
 
 	void InputHandler () {
 		// handle zoom
-		float change = Input.GetAxis ("Mouse ScrollWheel") * -scrollSpeed;
+		float change = Input.GetAxis ("Mouse ScrollWheel") * scrollSpeed;
 		
 		if (change - Mathf.Abs (change) < 0.05f && zoomLevel - change > 10.0f) {
 			this.transform.position = new Vector3 (this.transform.position.x,
 			                                       this.transform.position.y,
-			                                       this.transform.position.z + change);
+			                                       zoomLevel);
 			zoomLevel -= change;
 			
 			if (zoomLevel < 10.0f) {
