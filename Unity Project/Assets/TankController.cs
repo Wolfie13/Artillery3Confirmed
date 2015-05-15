@@ -25,6 +25,7 @@ public class TankController : MonoBehaviour {
 		Material newMat = Instantiate (this.renderer.material) as Material;
 		newMat.SetColor("_Color", RandomColor());
 		this.renderer.material = newMat;
+		this.gun.renderer.material = newMat;
         weapons = GetComponent<WeaponInventory>();
 	}
 
