@@ -162,11 +162,14 @@ public class GameController : MonoBehaviour {
 
 			//Count the number of dead tanks.
 			int numDead = 0;
-			foreach (TankController t in tanks)
+			if (tanks != null)
 			{
-				if (t.IsDead())
+				foreach (TankController t in tanks)
 				{
-					numDead++;
+					if (t.IsDead())
+					{
+						numDead++;
+					}
 				}
 			}
 
