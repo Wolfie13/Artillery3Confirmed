@@ -7,7 +7,6 @@ public class TankController : MonoBehaviour {
 	public bool shot = false;
 	public float health = 100;
 	private GameObject gun;
-	public GameObject bullet;
     private WeaponInventory weapons;
 
 	private float gunAngle = 0f;
@@ -55,6 +54,16 @@ public class TankController : MonoBehaviour {
 		return this.health < 0;
 	}
 
+	public float GetGunAngle()
+	{
+		return this.gunAngle;
+	}
+
+	public string GetSelectedWeaponName()
+	{
+		return this.weapons.equippedWeapon.name;
+	}
+
 	public void SelfRight()
 	{
 		float d = Vector3.Dot (transform.up.normalized, Vector3.up);
@@ -67,6 +76,11 @@ public class TankController : MonoBehaviour {
     {
         this.health -= damage;
     }
+
+	public void SwitchWeapon(bool fwd)
+	{
+		weapons.weaponIndex = fwd ? weapons.weaponIndex + 1 : weapons.weaponIndex - 1;
+	}
 
 	// Update is called once per frame
 	void Update () {
