@@ -46,6 +46,15 @@ public class GameController : MonoBehaviour {
 		turnTimer = 1.0f;
 	}
 
+	void EndGame() {
+		activeTank = null;
+		foreach(TankController tc in tanks)
+		{
+			DestroyImmediate(tc.gameObject);
+		}
+		tanks.Clear();
+	}
+
 	private void NextTank()
 	{
 		NextTank (0);
@@ -175,8 +184,11 @@ public class GameController : MonoBehaviour {
 
 			if (numDead == tanks.Count - 1)
 			{
+				Debug.Log ("Game ended due to elimination of all tanks.");
 				//Game over.
 				this.State = GameState.GG;
+				EndGame();
+				StartGame();
 				return;
 			}
 

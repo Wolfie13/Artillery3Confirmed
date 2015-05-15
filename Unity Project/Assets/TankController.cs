@@ -90,11 +90,12 @@ public class TankController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!this.IsDead()) 
-		{
+		if (!this.IsDead ()) {
 			Vector3 pos = this.transform.position;
 			pos.z = 0;
 			this.transform.position = pos;
+		} else {
+			this.particleSystem.enableEmission = true;
 		}
 
 		if (this.activePlayer)
