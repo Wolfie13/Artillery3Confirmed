@@ -29,7 +29,11 @@ public class WeaponInventory : MonoBehaviour
         get { return m_currentWeapon; }
         set
         {
-            m_currentWeapon = value % m_weapons.Count;
+			if (value < 0) {
+				m_currentWeapon = m_weapons.Count - 1;
+			} else {
+				m_currentWeapon = value % m_weapons.Count;
+			}
         }
     }
 
