@@ -6,6 +6,7 @@ public class TankController : MonoBehaviour {
 	public bool activePlayer = false;
 	public bool shot = false;
 	public float health = 100;
+	public float gunPower = 30;
 	private GameObject gun;
     private WeaponInventory weapons;
 
@@ -59,6 +60,11 @@ public class TankController : MonoBehaviour {
 		return this.gunAngle;
 	}
 
+	public float GetGunPower()
+	{
+		return this.gunPower;
+	}
+
 	public string GetSelectedWeaponName()
 	{
 		return this.weapons.equippedWeapon.name;
@@ -105,6 +111,17 @@ public class TankController : MonoBehaviour {
 				this.gunAngle = Mathf.Clamp(this.gunAngle, -80, 80);
 				this.gun.transform.localRotation = Quaternion.AngleAxis(this.gunAngle, Vector3.up);
 			}
+
+			if (Input.GetKey ("w"))
+			{
+				this.gunPower += Time.deltaTime * 10;
+			}			
+			else if (Input.GetKey ("s"))
+			{
+				this.gunPower += Time.deltaTime * -10;
+			}
+
+			this.gunPower = Mathf.Clamp(this.gunPower, 10, 50);
 			
 			if (Input.GetKey ("a"))
 			{
@@ -127,7 +144,7 @@ public class TankController : MonoBehaviour {
 	{
 		Vector3 dir = gun.transform.forward;
 		Vector3 pos = gun.transform.position + (gun.transform.forward * 3.0f);
-        Vector3 vel = dir * 40f;
+        Vector3 vel = dir * gunPower;
 		
         weapons.equippedWeapon.Fire (pos, vel, transform.rotation);
 	}

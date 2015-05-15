@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour {
 					string healthString = "Health: " + tankCont.health;
 					GUI.Label (new Rect (5, 20, 140, 20), healthString, labelStyle);
 
-					GUI.Label (new Rect (5, 40, 140, 25), "Gun Angle: " + (int) tankCont.GetGunAngle(), labelStyle);
+					GUI.Label (new Rect (5, 40, 140, 25), "Gun A: " + (int) tankCont.GetGunAngle() + " P: " + (int) tankCont.GetGunPower(), labelStyle);
 					GUI.Label (new Rect (20, 65, 140, 25), activeTank.GetSelectedWeaponName(), labelStyle);
 					if (GUI.Button (new Rect (120, 65, 20, 25), ">"))
 					{
