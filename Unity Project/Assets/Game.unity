@@ -583,7 +583,7 @@ MonoBehaviour:
   - {fileID: 695204862}
   tankPrefab: {fileID: 100002, guid: 114f5da544d926a4ea98b8e3b2bf420e, type: 2}
   marker: {fileID: 0}
-  newTurnAudio: {fileID: 0}
+  newTurnAudio: {fileID: 8300000, guid: a22b8c429f521429084d616c68dda19a, type: 3}
   activeTank: {fileID: 0}
   State: 0
 --- !u!4 &1724129760
@@ -608,7 +608,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: a1b20f1b0981040449de79a4135767e0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .800000012
   m_Pitch: 1
   Loop: 1
   Mute: 0
